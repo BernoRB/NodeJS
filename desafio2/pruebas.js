@@ -30,7 +30,7 @@ let file = new Contenedor('./products.txt')
 // console.log(allProds)
 
 // 6) liminamos exitosamente un prodcuto
-// file.deleteById(2)
+// file.deleteById(3)
 
 // 7) Intentamos eliminar un producto que no existe
 // file.deleteById(33)

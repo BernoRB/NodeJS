@@ -11,10 +11,9 @@ class Contenedor {
     constructor(route) {
         this.route = route
         try {
-            // Leo el archivo, guardo los productos en atributo products
+            // Leo el archivo, guardo los productos en products
             this.products = fs.readFileSync(this.route, 'utf-8')
             this.products = JSON.parse(this.products)
-            console.log('Productos cargados exitosamente')
         }
         catch (err) {
             this.products = []
@@ -34,7 +33,7 @@ class Contenedor {
             newId++
         }
 
-        // Creo el producto, asigno atributos
+        // Creo el producto a cargar
         let newProd = new Product(title, price)
         newProd.id = newId
 
