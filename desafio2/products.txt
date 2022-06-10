@@ -1,0 +1,27 @@
+[
+	{
+		"title": "Las Moras Malbec",
+		"price": 600,
+		"id": 1
+	},
+	{
+		"title": "Rutini Malbec",
+		"price": 1100,
+		"id": 2
+	},
+	{
+		"title": "Un Loco Mas Malbec",
+		"price": 500,
+		"id": 3
+	},
+	{
+		"title": "Circus Malbec",
+		"price": 700,
+		"id": 4
+	},
+	{
+		"title": "Callia Chardonnay",
+		"price": 800,
+		"id": 5
+	}
+]
