@@ -1,6 +1,6 @@
 ## Pruebas: orden sugerido
 ### 1. Inicio
-* Nos posicionamos en la carpeta src y ejecutamos node index.js para comenzar
+* Nos posicionamos en la carpeta src y ejecutamos node server.js para comenzar
 * Salida esperada: "Servidor escuchando en el puerto 8080"
 
 
