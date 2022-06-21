@@ -1,6 +1,6 @@
 ## Pruebas: orden sugerido
 ### 1. Inicio
-* Para cada uno de las tres partes del proyecto nos situamos en su respectiva carpeta, ejecutamos node main.js y hacemos los pasos 2, 3 y 4
+* Para cada uno de las tres partes del proyecto nos situamos en su respectiva carpeta, ejecutamos node main.js y hacemos los pasos 2, 3, 4, 5 y 6.
 * Salida esperada: "Servidor escuchando en el puerto 8080"
 
 ### 2. Formulario
