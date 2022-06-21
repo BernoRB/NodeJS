@@ -1,0 +1,23 @@
+<div class="container mt-3">
+    <h1>Todos los productos</h1> <br>
+    {{#if qProducts}}
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+            {{#each products}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>${{this.price}}</td>
+                <td><img width="50px" class="img-fluid img-thumbnail" src={{this.thumbnail}}></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{else}}
+    <h2 class="alert alert-info">No hay productos!</h3>
+    {{/if}}
+    <a href="/" type="button" class="btn btn-primary">Cargar producto</a>
