@@ -1,0 +1,21 @@
+extends index
+
+block viewProducts
+    div(class="container mt-3")
+        h1='Todos los Productos'
+        if qProducts
+            div(class="table-responsive")
+                table(class="table")
+                    tr
+                        th='Nombre'
+                        th='Precio'
+                        th='Foto'
+                        each product in products
+                            tr
+                                td=product.name
+                                td=product.price
+                                td
+                                    img(width="50px" class="img-fluid img-thumbnail" src=product.thumbnail)
+        else
+            h2(class="alert alert-info")='No hay productos!'
+        a(href="/" type="button" class="btn btn-primary")='Cargar nuevo producto'
