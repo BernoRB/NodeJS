@@ -1,0 +1,27 @@
+<div class="m-3">
+    <h3 class="m4 pt-3">Todos los productos</h3> <br>
+    {{#if products}}
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+            {{#each products}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>${{this.price}}</td>
+                <td><img width="100px" class="img-fluid img-thumbnail" src={{this.thumb}}></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{else}}
+    <div class="alert alert-info">
+        <h4 class="alert-heading">No hay productos!</h4>
+        <p>Agregá algunos con el formulario de arriba o pegándole a /cargaFalsa</p>
+    </div>
+    <br>
+    {{/if}}
+</div>
