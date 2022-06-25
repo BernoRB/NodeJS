@@ -41,7 +41,7 @@ function getAllProducts(req, res) {
 function saveProduct(req, res) {
     const products = getAllP()
     let data = req.body
-    const timestamp = 'asdtimestamp'
+    const timestamp = new Date().toLocaleString()
     let newId = 1
     if (!products.length == 0)
         newId = (products[products.length - 1].id) + 1 // Uno más que el último
@@ -59,7 +59,7 @@ function saveProduct(req, res) {
 function modifyProduct(req, res) {
     const products = getAllP()
     const data = req.body
-    const timestamp = 'timestampMODIFICADA'
+    const timestamp = new Date().toLocaleString()
     const i = products.findIndex((element) => element.id == req.params.id)
     if (i != -1) {
         products[i].timestamp = timestamp
@@ -74,7 +74,6 @@ function modifyProduct(req, res) {
     } else
         res.json({ error: 'Producto no encontrado' })
 }
-
 
 //router.delete ('/:id',   product.deleteProduct)
 function deleteProduct(req, res) {
