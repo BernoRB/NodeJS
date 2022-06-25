@@ -21,7 +21,7 @@ function getAllP() {
 function saveInFile(products) {
     fs.writeFile(prodsPath, JSON.stringify(products), (err) => {
         if (err) throw err
-        console.log('Archivo guardado correctamente')
+        console.log('Archivo productos guardado correctamente')
     })
 }
 
@@ -87,4 +87,12 @@ function deleteProduct(req, res) {
         res.json({ error: 'Producto no encontrado' })
 }
 
-module.exports = { getAllProducts, saveProduct, modifyProduct, deleteProduct }
+// Si no tiene permiso
+function restrictedRoute(req, res) {
+    res.json({
+        error: 'Error',
+        descripcion: 'No tiene permiso para acceder a esta ruta'
+    })
+}
+
+module.exports = { getAllProducts, saveProduct, modifyProduct, deleteProduct, restrictedRoute }

@@ -46,9 +46,10 @@ e- Carrito tiene:
             stock
         }
 
-f- timestamp puede implementarse con Date.now()
+// LISTO // f- timestamp puede implementarse con Date.now()
 
-g- Realizar persistencia de productos y del carrito en el filesystem
+// LISTO // g- Realizar persistencia de productos y del carrito en el filesystem
 
 
 // Se puede probar con Postman o con un Front basico
+
