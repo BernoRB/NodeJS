@@ -1,0 +1,55 @@
+
+-El servidor implementara dos conjuntos de rutas agrupadas en
+routers, uno con la urb base /productos y el otro con /carrito
+-Puerto de escucha 8080 para desarrollo, process.env.PORT para produccion en glitch
+
+Aspectos a incluir:
+a- router base /api/productos:
+    1. GET '/:id?' >> Listar todos los productos o por id (ambas segun ponga ID)
+    solo para admins:
+    2. POST '/' >> Incorporo producto
+    3. PUT '/:id' >> Actualiza producto
+    4. DELETE ':/id' >> Borra producto
+
+b- router base /api/carrito:
+    1. POST '/' >> Crea carrito y devuelve su ID
+    2. DELETE '/:id' >> Vacia un carrito y lo elimina
+    3. GET '/:id/productos' >> Lista productos guardados en carrito
+    4. POST '/:id/productos' >> Incorpora productos al carrito por id de producto (mm eso dice la consigna pero el ID este no es del carrito?)
+    5. DELETE '/:id/productos/:id_prod' >> Eliminar un producto del carrito por su id de carrito y de producto
+
+c- variable bool administrador (cuyo valor configuraremos mas adelante con el sistema de login)
+    - segun T o F me permite alcanzar o no las rutas indicadas
+    - request no permitida: devuelve objeto de error
+
+d- Producto tiene:
+    -id
+    -timestamp
+    -nombre
+    -descripcion
+    -codigo
+    -foto url
+    -precio
+    -stock
+
+e- Carrito tiene:
+    -id
+    -timestamp(carrito)
+    -productos:
+        {
+            id
+            timestamp(producto)
+            nombre
+            descripcion
+            codigo
+            foto url
+            precio
+            stock
+        }
+
+f- timestamp puede implementarse con Date.now()
+
+g- Realizar persistencia de productos y del carrito en el filesystem
+
+
+// Se puede probar con Postman o con un Front basico

@@ -1,0 +1,3 @@
+Aca van los controladores
+
+Van a estar las funciones y van a ser llamados desde las RUTAS cuando le pegan
