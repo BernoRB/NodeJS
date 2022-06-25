@@ -1,4 +1,4 @@
-const Product = require("../models/productClass");
+const Product = require("../models/productClass")
 
 let products = []
 

@@ -6,7 +6,7 @@ async function getAllMessages() {
         let chat = new Chat()
         const chatFile = await fs.readFile(chat.filename, 'utf-8')
         const chatData = JSON.parse(chatFile)
-        return chatData.map(p => p)
+        return chatData
     } catch (error) {
         return('Hubo un error al intentar traer los mensajes', error)
     }
