@@ -1,6 +1,6 @@
-// Socket
 const socket = io.connect()
 
+// Listeners
 document.getElementById('btnFormProd').addEventListener('click', emitProd)
 document.getElementById('btnFormMsg').addEventListener('click', emitMsg)
 
