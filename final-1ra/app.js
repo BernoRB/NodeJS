@@ -1,10 +1,11 @@
 const express = require('express')
 const path = require('path')
 const http = require('http')
-const PORT = 8080
 
 const products = require('./routes/productsRou')
 const cart = require('./routes/cartRou')
+
+const PORT = process.env.PORT || 8080
 
 const app = express()
 
