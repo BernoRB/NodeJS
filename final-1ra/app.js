@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const http = require('http')
+require("dotenv").config()
 
 const products = require('./routes/productsRou')
 const cart = require('./routes/cartRou')
@@ -15,10 +16,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/carrito', cart)
 app.use('/api/productos', products)
-
+app.use((req, res, next) => { res.status(404).json({error: "404 page not found"}) })
 
 const server = app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${server.address().port}`)
+    console.log(`Servidor escuchando en el puerto ${PORT}`)
 })
 server.on("error", error => console.log(`Error en servidor ${error}`))
 
