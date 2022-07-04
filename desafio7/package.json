@@ -1,0 +1,22 @@
+{
+  "name": "desafio6v3",
+  "version": "1.0.0",
+  "description": "* Nos paramos en la carpeta del proyecto, npm init y luego iniciamos con npm start\r * Salida esperada: \"Escuchando en el puerto 8080\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "knex": "^2.1.0",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.5.1",
+    "sqlite3": "^5.0.8",
+    "toastify-js": "^1.11.2"
+  }
+}
