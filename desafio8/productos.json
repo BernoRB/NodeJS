@@ -1,0 +1,3 @@
+{"_id":{"$oid":"62c5e190dfb2699bead4fb10"},"name":"Rutini","price":1000.0,"thumb":"/img/rutini.jpg","stock":0.0}
+{"_id":{"$oid":"62c5e190dfb2699bead4fb11"},"name":"Trumpeter","price":1300.0,"thumb":"/img/trumpeter.jpg","stock":0.0}
+{"_id":{"$oid":"62c5e190dfb2699bead4fb13"},"name":"Lobo con piel de cordero","price":900.0,"thumb":"/img/lobocordero.jpg","stock":100.0}

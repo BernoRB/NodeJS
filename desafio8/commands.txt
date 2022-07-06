@@ -1,0 +1,117 @@
+// Creamos base de datos 'ecommerce' con dos colecciones: 'mensajes' y 'productos'
+
+use ecommerce
+db.createCollection("mensajes")
+db.createCollection("productos")
+
+
+// Agregamos 5 y 5 a cada coleccion
+db.mensajes.insertMany([
+    { msgEmail: 'bernobr@gmail.com', msgDate: new Date().toLocaleString(), msgContent: 'Holaaa' },
+    { msgEmail: 'franciskg@gmail.com', msgDate: new Date().toLocaleString(), msgContent: 'Como va master!' },
+    { msgEmail: 'bernobr@gmail.com', msgDate: new Date().toLocaleString(), msgContent: 'Bien campeon y vos!' },
+    { msgEmail: 'franciskg@gmail.com', msgDate: new Date().toLocaleString(), msgContent: 'Bien pero te dejo que me surgio algo!' },
+    { msgEmail: 'bernobr@gmail.com', msgDate: new Date().toLocaleString(), msgContent: 'Dale dale hablamos' }
+])
+
+db.productos.insertMany([
+    { name: 'Las Moras Malbec', price: 600, thumb: '/img/lasmoras.jpg' },
+    { name: 'Rutini', price: 1000, thumb: '/img/rutini.jpg' },
+    { name: 'Trumpeter', price: 1300, thumb: '/img/trumpeter.jpg' },
+    { name: 'Otro loco mas', price: 600, thumb: '/img/otroloco.jpg' },
+    { name: 'Lobo con piel de cordero', price: 900, thumb: '/img/lobocordero.jpg' }
+])
+
+
+// Listamos todo
+
+db.mensajes.find()
+db.productos.find()
+
+
+// Mostramos la cantidad de documentos en cada uno de ellos
+
+db.mensajes.count()
+db.productos.count()
+
+
+// Agregamos un producto
+
+db.products.insertOne({
+    name: 'Otro vinardo', price: 1400, thumb: '/img/otrovinardo.jpg'
+})
+
+
+// Listar menor mil pesos
+
+db.productos.find({ "price" : { $lt: 1000 } }, { "name" : 1 })
+
+
+// Listar entre 700 y 1100
+
+db.productos.find( { $and: [ { "price" : { $gt : 700 } }, { "price" : { $lt : 1100 } } ] }, { "name" : 1 })
+
+
+// Listar mayor a 900
+
+db.productos.find({ "price" : { $gt: 900 } }, { "name" : 1 })
+
+
+// Nombre del tercer producto mas barato
+
+db.productos.find().skip(2).sort({ "price" : 1 }).limit(1)
+
+
+// Añado stock 100 a todos
+
+db.productos.updateMany( {}, { $set: { "stock" : 100 } } )
+
+
+// Stock 0 a los productos de más de 900 pesos
+
+db.productos.updateMany( { "price" : { $gt : 900 } }, { $set : { "stock" : 0 } } )
+
+
+// Borro los productos de menos de 700 pesos
+
+db.productos.deleteMany( { "price" : { $lt : 700 } } )
+
+
+// Creo pepe - asd456 solo lectura
+
+*Salimos de mongo*
+mongod
+use admin
+
+db.createUser({
+    user: "admin",
+    pwd: "admin",
+    roles: 
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" },
+             { role: "dbAdminAnyDatabase", db: "admin" },
+             { role: "readWriteAnyDatabase", db: "admin" }
+           ]
+})
+
+db.createUser({
+    user: "pepe",
+    pwd: "asd456",
+    roles: 
+    [{
+        role: "read",
+        db: "ecommerce"
+    }]
+})
+
+
+// Probamos que sea solo lectura
+
+mongo -u pepe -p asd456
+use ecommerce
+db.productos.deleteMany( { "price" : { $lt : 700 } })
+
+
+
+// Por ultimo exportamos como JSON productos y mensajes usando mongoexport
+mongoexport --collection=productos --db=ecommerce --out=productos.json
+mongoexport --collection=mensajes --db=ecommerce --out=mensajes.json
