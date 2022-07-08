@@ -1,9 +1,10 @@
-class Cart {
-    constructor(id, timestamp, products) {
-        this.id = id,
-        this.timestamp = timestamp,
-        this.products = products
-    }
-}
+const mongoose = require('mongoose')
 
-module.exports = Cart
+const cartsSchema = new mongoose.Schema({
+    id: Number,
+    timestamp: String,
+    products: Object // ojota esto puede no funcionar
+})
+
+const cartsModel = mongoose.model('carts', cartsSchema)
+module.exports = cartsModel
