@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cartsSchema = new mongoose.Schema({
     id: Number,
     timestamp: String,
-    products: Object // ojota esto puede no funcionar
+    products: { type : Array, "default" : [] }
 })
 
 const cartsModel = mongoose.model('carts', cartsSchema)

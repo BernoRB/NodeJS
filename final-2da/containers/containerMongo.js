@@ -19,45 +19,44 @@ class containerMongo {
     }
 
     async getById(id) {
-        return await this.model.findOne({id})
+        const prod = await this.model.findOne({id})
+        if (prod)
+            return prod
+        throw new Error('No encontramos registro con ese ID')
     }
 
     async delete(id) {
-        return await this.model.deleteOne({id})
+        const exists = await this.getById(id)
+        if (exists) {
+            return await this.model.deleteOne({id})
+        }
+        throw new Error('No encontramos registro con ese ID')
     }
 
     async update(data, id) {
-        const filter = { id };
-        return await this.model.findOneAndUpdate(filter, data);
+        const exists = await this.getById(id)
+        if (exists) {
+            const filter = { id };
+            return await this.model.findOneAndUpdate(filter, data);
+        }
+        throw new Error('No encontramos registro con ese ID')
     }
 
+    // Agrega datos a un campo especifico de un documento especifico
+    async updatePush(data, id, field) {
+        return await this.model.updateOne(
+            { id : id },
+            { $push: { [field] : data } }
+        )
+    }
+
+    // Eliminamos por id un objeto dentro de un array de objetos de un documento (ej: producto de un carrito)
+    async updatePull(idDocument, idObject, field) {
+        return await this.model.updateOne(
+            { id: idDocument },
+            { $pull: { [field] : { id : parseInt(idObject) } } }
+        )
+    }
 }
 
 module.exports = containerMongo
-
-
-
-// const Producto = require('../models/product.js')
-// const prod = new Producto(1, 'asd', 'titulo1', 'desc1', 500, 'thumb', 'code111', 50)
-
-/*
-const prodSaveModel = new mongoose.model.products(prod)
-let prodSave = await prodSaveModel.save()
-console.log(prodSave)
-
-const config = require('./config.js')
-config.startDB()
-
-const Producto = require('./models/product.js')
-const ProductoSchema = require('./daos/productsDaoMongo')
-
-const prod = new Producto(1, 'asd', 'titulo1', 'desc1', 500, 'thumb', 'code111', 50)
-
-async function guardar(){
-    const prods = new ProductoSchema(prod)
-    await prods.save()
-    console.log(prods)
-}
-
-guardar()
-*/

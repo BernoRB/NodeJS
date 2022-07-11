@@ -6,8 +6,7 @@ class productsDaoMongo extends containerMongo {
         super(productModel)
     }
 
-    // Si bien Mongo asigna un _id yo le asigno otro numero corto consecutivo de la misma forma que 
-    // en firebase para luego poder ubicarlo con un getById...
+    // Si bien Mongo asigna un _id yo le asigno otro numero para ubicarlo
     async checkId(){
         const products = await this.getAll()
         if(products.length > 0) {
