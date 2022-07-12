@@ -1,15 +1,11 @@
-const express = require('express');
+const express = require('express')
 const router = express.Router()
-//Mongo
-const { productsDaoMongo } = require('../daos/productsDaoMongo');
-//const productDao = new productsDaoMongo()
 
-//Firebase
-const { productsDaoFb } = require('../daos/productsDaoFirebase');
-const productDao = new productsDaoFb()
+const { productD } = require('../daos/indexDaos')
+const productDao = new productD()
 
-// La trae del env como un string asique la paso a bool
-const admin = (process.env.ADMIN.toLowerCase() === 'true');
+// Env para permitir rutas. La trae como un string asique la paso a bool
+const admin = (process.env.ADMIN.toLowerCase() === 'true')
 
 // Middleware para saltear la ruta en caso de que no sea admin. Se lo agrego luego a las rutas que corresponde.
 function skipThisRouteMiddleware(req, res, next) {
@@ -18,7 +14,6 @@ function skipThisRouteMiddleware(req, res, next) {
     }
     return next()
 }
-
 
 router.get('/', async (req, res) => {
     try {

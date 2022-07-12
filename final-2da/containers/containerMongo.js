@@ -33,6 +33,7 @@ class containerMongo {
         throw new Error('No encontramos registro con ese ID')
     }
 
+    // UPDATES: update sería reemplazar el contenido, updatePush es agregar contenido sobre el existente, updatePull es retirar contenido pero manteniendo el resto existente
     async update(data, id) {
         const exists = await this.getById(id)
         if (exists) {

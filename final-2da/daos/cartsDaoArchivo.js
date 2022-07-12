@@ -1,10 +1,10 @@
-const containerFirebase = require('../containers/containerFirebase')
-const { productsDaoFb } = require('../daos/productsDaoFirebase')
-const productDao = new productsDaoFb()
+const containerArchivo = require('../containers/containerArchivo')
+const { productsDaoArchivo } = require('../daos/productsDaoArchivo')
+const productDao = new productsDaoArchivo()
 
-class cartsDaoFb extends containerFirebase {
+class cartsDaoArchivo extends containerArchivo {
     constructor() {
-        super('carts')
+        super('cartsDB')
     }
 
     async checkId() {
@@ -12,18 +12,20 @@ class cartsDaoFb extends containerFirebase {
         if (carts.length > 0) {
             return parseInt(carts[carts.length - 1].id) + 1;
         }
-        return 0
+        return 1
     }
 
+    // Crea un carrito, con id y timestamp, vacio de productos
     async createCart(cart) {
-        const idCart = await this.checkId()
+        cart.id = await this.checkId()
         const timestamp = new Date().toLocaleString()
         cart.timestamp = timestamp
         cart.products = []
-        await this.save(cart, idCart)
+        await this.save(cart)
+        return cart.id
     }
 
-    // Agrego productos al carrito 
+    // Agrego productos al carrito
     async addToCart(idCart, idProd) {
         const prodToAdd = await productDao.getById(idProd)
         if (prodToAdd) {
@@ -32,18 +34,17 @@ class cartsDaoFb extends containerFirebase {
         throw new Error('No existe un producto con ese ID')
     }
 
+    // Muestro productos de carrito
+    async getByIdCart(idCart) {
+        const cart = await this.getById(idCart)
+        return cart.products
+    }
+    
     // Elimino productos del carrito
     async deleteFromCart(idCart, idProd) {
-        const prodToDelete = await productDao.getById(idProd)
-        this.updatePull(idCart, prodToDelete, 'products')
-    }
-
-    // Devuelve solo los productos del cart
-    async getByIdCart(id) {
-        const cart = await this.getById(id)
-        return cart.data.products
+        this.updatePull(idCart, idProd)
     }
 
 }
 
-module.exports = { cartsDaoFb }
+module.exports = { cartsDaoArchivo }

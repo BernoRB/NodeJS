@@ -1,6 +1,5 @@
 const admin = require('firebase-admin')
 const firebase = require('firebase-admin')
-
 const { FIREBASE_CONFIG } = require('../config')
 
 admin.initializeApp({
