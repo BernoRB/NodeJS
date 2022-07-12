@@ -1,9 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
+// Mongo
 const { cartsDaoMongo } = require('../daos/cartsDaoMongo')
-const cartsDao = new cartsDaoMongo()
+// const cartsDao = new cartsDaoMongo()
 
+//Firebase
+const { cartsDaoFb } = require('../daos/cartsDaoFirebase');
+const cartsDao = new cartsDaoFb()
 
 // Crea un carrito. No agrega prods, nada. Lo crea.
 router.post('/', async (req, res) => {

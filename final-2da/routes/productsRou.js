@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router()
+//Mongo
 const { productsDaoMongo } = require('../daos/productsDaoMongo');
-const productDao = new productsDaoMongo()
+//const productDao = new productsDaoMongo()
+
+//Firebase
+const { productsDaoFb } = require('../daos/productsDaoFirebase');
+const productDao = new productsDaoFb()
 
 // La trae del env como un string asique la paso a bool
 const admin = (process.env.ADMIN.toLowerCase() === 'true');

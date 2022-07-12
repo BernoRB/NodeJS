@@ -1,6 +1,7 @@
 // Archivo de configuracion para conexion con base de datos
+require('dotenv').config()
 
 module.exports = {
-    MONGO_URI: 'mongodb+srv://admin:admin@cluster0.mfuz8aw.mongodb.net/?retryWrites=true&w=majority',
-    FIRESTORE_FILE: ''
+    MONGO_URI: process.env.MONGO_URI || '',
+    FIREBASE_CONFIG : JSON.parse(process.env.FIREBASE_CONFIG) || ''
 }

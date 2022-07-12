@@ -1,35 +1,33 @@
-const containerMongo = require('../containers/containerMongo')
-const cartModel = require('../models/cart')
-const { productsDaoMongo } = require('../daos/productsDaoMongo')
-const productDao = new productsDaoMongo()
+const containerFirebase = require('../containers/containerFirebase')
 
-class cartsDaoMongo extends containerMongo {
+const { productsDaoFb } = require('../daos/productsDaoFirebase')
+const productDao = new productsDaoFb()
+
+class cartsDaoFb extends containerFirebase {
     constructor() {
-        super(cartModel)
+        super('carts')
     }
 
-    // Si bien Mongo asigna un _id yo le asigno otro numero corto consecutivo para luego poder ubicarlo pot mi ID.
     async checkId() {
         const carts = await this.getAll()
         if (carts.length > 0) {
             return parseInt(carts[carts.length - 1].id) + 1;
         }
-        return 1
+        return 0
     }
 
-    // Crea un carrito, con id y timestamp, vacio de productos
     async createCart(cart) {
-        cart.id = await this.checkId()
+        const idCart = await this.checkId()
         const timestamp = new Date().toLocaleString()
         cart.timestamp = timestamp
-        await this.save(cart)
-        return cart.id
+        cart.products = []
+        await this.save(cart, idCart)
     }
 
-    // Agrego productos al carrito
+    // Agrego productos al carrito 
     async addToCart(idCart, idProd) {
         const prodToAdd = await productDao.getById(idProd)
-        if(prodToAdd){
+        if (prodToAdd) {
             return await this.updatePush(prodToAdd, idCart, 'products')
         }
         throw new Error('No existe un producto con ese ID')
@@ -37,15 +35,16 @@ class cartsDaoMongo extends containerMongo {
 
     // Elimino productos del carrito
     async deleteFromCart(idCart, idProd) {
-        this.updatePull(idCart, idProd, 'products')
+        const prodToDelete = await productDao.getById(idProd)
+        this.updatePull(idCart, prodToDelete, 'products')
     }
 
     // Devuelve solo los productos del cart
     async getByIdCart(id) {
         const cart = await this.getById(id)
-        return cart.products
+        return cart.data.products
     }
 
 }
 
-module.exports = { cartsDaoMongo }
+module.exports = { cartsDaoFb }
