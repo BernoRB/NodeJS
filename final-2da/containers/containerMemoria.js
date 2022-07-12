@@ -1,22 +1,20 @@
-const fs = require('fs')
-const path = require('path')
-
-class containerArchivo {
-    constructor(file){
-        this.file = path.join(__dirname, '..', 'dataFiles', `${file}.json`)
+class containerMemoria {
+    constructor(array){
+        this.array = array
     }
 
-    save(content) {
-        let fileContent = this.getAll()
-        fileContent.push(content)
-        this.saveInFile(fileContent)
+    save(product) {
+        try{        
+            this.array.push(product)
+        }
+        catch(error){
+            return `Ocurrio un error: ${error}`
+        }
     }
 
     getAll() {
         try{
-            const info = fs.readFileSync(this.file, 'utf-8')
-            const data = JSON.parse(info)
-            return data.map(p => p);
+            return this.array
         }
         catch(error){
             return `Ocurrio un error: ${error}`
@@ -43,7 +41,7 @@ class containerArchivo {
 
             if (index > -1){
                 data.splice(index, 1)
-                await this.saveInFile(data)
+                this.array = data
             }
         }
         catch(error){
@@ -57,7 +55,7 @@ class containerArchivo {
             const index = data.findIndex(p => p.id == id)
             datum.id = id
             data[index] = datum
-            await this.saveInFile(data)
+            this.array = data
         }
         catch(error){
             return `Ocurrio un error: ${error}`
@@ -69,7 +67,7 @@ class containerArchivo {
             let fileContent = this.getAll()
             const index = fileContent.findIndex(p => p.id == id)
             fileContent[index].products.push(data)
-            this.saveInFile(fileContent)
+            this.array = fileContent
         } catch (error) {
             return `Ocurrio un error: ${error}`
         }
@@ -81,24 +79,13 @@ class containerArchivo {
             const index = fileContent.findIndex(p => p.id == id)
             const index2 = fileContent[index].products.findIndex(p => p.id == dataId)
             fileContent[index].products.splice(index2, 1)
-            this.saveInFile(fileContent)
+            this.array = fileContent
         } catch (error) {
             return `Ocurrio un error: ${error}`
         }
     }
 
-
-    async saveInFile(content){
-        try {
-            fs.writeFile(this.file, JSON.stringify(content), (err) => {
-                if (err) throw err
-                console.log('Archivo productos guardado correctamente')
-            })
-        } catch (error) {
-            return `Ocurrio un error: ${error}`
-        }
-    }
 
 }
 
-module.exports = containerArchivo
+module.exports = containerMemoria

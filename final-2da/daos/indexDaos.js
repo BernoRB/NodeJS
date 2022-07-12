@@ -10,6 +10,10 @@ const { cartsDaoFb } = require('./cartsDaoFirebase')
 const { cartsDaoArchivo } = require('./cartsDaoArchivo')
 const { productsDaoArchivo } = require('./productsDaoArchivo')
 
+// Memoria
+const { cartsDaoMemoria } = require('./cartsDaoMemoria')
+const { productsDaoMemoria } = require('./productsDaoMemoria')
+
 let productD
 let cartD
 
@@ -29,6 +33,12 @@ if (process.env.ENGINE == 'FIREBASE'){
     console.log('PERSISTENCIA: FIREBASE')
     productD = productsDaoFb
     cartD = cartsDaoFb
+}
+
+if (process.env.ENGINE == 'MEMORIA'){
+    console.log('PERSISTENCIA: MEMORIA')
+    productD = productsDaoMemoria
+    cartD = cartsDaoMemoria
 }
 
 module.exports = { productD, cartD }
