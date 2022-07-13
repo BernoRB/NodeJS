@@ -1,18 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-// Mongo
-// const { cartsDaoMongo } = require('../daos/cartsDaoMongo')
-// const cartsDao = new cartsDaoMongo()
-
-//Firebase
-// const { cartsDaoFb } = require('../daos/cartsDaoFirebase')
-// const cartsDao = new cartsDaoFb()
-
-// Archivo
-// const { cartsDaoArchivo } = require('../daos/cartsDaoArchivo')
-// const cartsDao = new cartsDaoArchivo()
-
 const { cartD } = require('../daos/indexDaos')
 const cartsDao = new cartD()
 
