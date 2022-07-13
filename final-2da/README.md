@@ -4,7 +4,7 @@
 ### Instrucciones
 * Clonamos, instalamos dependencias y ejecutamos
 * En [ESTE LINK](https://github.com/BernoRB/NodeJS/blob/main/final-2da/thunder-collection_Back%20-%20Desafio%20Final.json) está una colección de Thunder para poder probar todos los endpoints
-* En esta segunda entrega, el tipo de persistencia de los datos se define desde la variable de entorno .env 'ENGINE' (pudiendo adoptar los valores MONGO, FIREBASE, ARCHIVO y MEMORIA)
+* En esta segunda entrega el tipo de persistencia de los datos se define desde la variable de entorno .env 'ENGINE' (pudiendo adoptar los valores MONGO, FIREBASE, ARCHIVO y MEMORIA)
 * El acceso o no a los endpoint que requieren ADMIN se configuran desde la variable de entorno .env 'ADMIN' (pudiendo adoptar los valores TRUE o FALSE)
 
 ### Endpoints
