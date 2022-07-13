@@ -23,16 +23,16 @@ if (process.env.ENGINE == 'MONGO'){
     cartD = cartsDaoMongo
 }
 
-if (process.env.ENGINE == 'FILE'){
-    console.log('PERSISTENCIA: ARCHIVO')
-    productD = productsDaoArchivo
-    cartD = cartsDaoArchivo
-}
-
 if (process.env.ENGINE == 'FIREBASE'){
     console.log('PERSISTENCIA: FIREBASE')
     productD = productsDaoFb
     cartD = cartsDaoFb
+}
+
+if (process.env.ENGINE == 'FILE'){
+    console.log('PERSISTENCIA: ARCHIVO')
+    productD = productsDaoArchivo
+    cartD = cartsDaoArchivo
 }
 
 if (process.env.ENGINE == 'MEMORIA'){
