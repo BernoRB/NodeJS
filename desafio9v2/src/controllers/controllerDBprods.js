@@ -1,4 +1,5 @@
-const db = require('../../config')
+// Las funciones de este modulo interactuan directamente con la base de datos de productos.
+const db = require('../sqlite/config.js')
 const tabla = 'productos'
 
 const tableExists = async () => {
@@ -8,15 +9,15 @@ const tableExists = async () => {
 const createTable = async () => {
     try {
         await db.schema.createTable(tabla, table => {
-                table.increments()
-                table.text('title', 255)
-                table.real('price')
-                table.text('thumbnail', 255)
-                table.text('fecha', 255)
-            })            
-    } 
-    catch (error) { 
-        throw error 
+            table.increments()
+            table.text('title', 255)
+            table.real('price')
+            table.text('thumbnail', 255)
+            table.text('fecha', 255)
+        })
+    }
+    catch (error) {
+        throw error
     }
 }
 
@@ -25,18 +26,18 @@ const addProd = async (newProd) => {
         const { title, price, thumbnail } = newProd
         const fecha = new Date().toLocaleString()
         await db.insert({ title, price, thumbnail, fecha }).into(tabla)
-    } 
-    catch (error) { 
-        throw error 
+    }
+    catch (error) {
+        throw error
     }
 }
 
 const getAll = async () => {
     try {
         return await db.select().table(tabla)
-    } 
-    catch (error) { 
-        throw error 
+    }
+    catch (error) {
+        throw error
     }
 }
 

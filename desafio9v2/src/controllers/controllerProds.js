@@ -2,17 +2,15 @@ const { faker } = require("@faker-js/faker")
 
 const { tableExists, getAll, createTable, addProd } = require("./controllerDBprods")
 
-faker.locale = "es"
 const getAllProducts = async () => {
   try {
     const exists = await tableExists()
-    if (exists) {
+    if (exists)
       return await getAll()
-    }
     await createTable()
   } 
   catch (error) {
-    throw error
+    console.log(error)
   }
 }
 
@@ -21,15 +19,14 @@ const addProduct = async (newProduct) => {
     const exists = await tableExists()
     if (!exists) await createTable()
     await addProd(newProduct)
-
-    return "Nuevo mensaje agregado"
   } 
   catch (error) {
-    throw error
+    console.log(error)
   }
 }
 
 // Genera productos falsos y renderiza la vista
+faker.locale = "es"
 const generateProducts = (req, res) => {
   const products = []
   for (let index = 0; index < 5; index++) {

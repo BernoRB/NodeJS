@@ -9,7 +9,7 @@ mongoose.connect(uri, {
 })
 
 db.once("open", () => {
-  console.log("MongoDB conectado a DB ", uri)
+  console.log("MongoDB conectado a la DB")
 })
 
 db.on("error", (err) => {
