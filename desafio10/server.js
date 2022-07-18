@@ -1,4 +1,4 @@
-require("dotenv").config()
+require('dotenv').config()
 const express = require("express")
 const path = require("path")
 const { Server: IOServer } = require("socket.io")
@@ -14,10 +14,38 @@ const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
 const products = require("./src/controllers/controllerProds")
-const messagesDB = require("./src/controllers/controllersMsgs")
+
+
+// Cosas de sessions
+const cookieParser = require("cookie-parser");
+const session = require('express-session');
+const MongoStore = require('connect-mongo')
+
+
+// Sessions
+app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser());
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGOURL,
+      mongoOptions: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    }),
+
+    key: 'user_sid',
+    secret: 'c0d3r',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60_000 } // 1 min
+  })
+)
+
+
 
 // Views engine
-app.set("views", path.join(__dirname, "public"))
 app.engine(
   "hbs",
   engine({
@@ -25,17 +53,16 @@ app.engine(
     extname: ".hbs",
   })
 )
+app.set("views", path.join(__dirname, "public"))
 app.set("view engine", "hbs")
 
 
-const PORT = process.env.PORT || 8080
+const PORT = 8080
 httpServer.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`))
-
 
 
 // Socket
 io.on("connection", async (socket) => {
-
   // Productos
   socket.emit("products", await products.getAllProducts())
   socket.on("new-product", async (newProduct) => {
@@ -43,13 +70,16 @@ io.on("connection", async (socket) => {
     const prods = await products.getAllProducts()
     io.sockets.emit("products", prods)
   })
-
-  // Chat
-  socket.emit("mensajes", await messagesDB.getAllMessages())
-
-  socket.on("nuevo-mensaje", async (newMessage) => {
-    await messagesDB.addMessage(newMessage)
-    io.sockets.emit("mensajes", await messagesDB.getAllMessages())
-  })
-
 })
+
+
+
+const { login, loginPost, logout, dash, sessionChecker } = require('./src/controllers/loginRelated.js')
+
+app.get('/', sessionChecker, (req, res) => {
+  res.redirect("/login")
+})
+app.get('/login', sessionChecker, login)
+app.post('/login', loginPost)
+app.get('/logout', logout)
+app.get('/dash', dash)

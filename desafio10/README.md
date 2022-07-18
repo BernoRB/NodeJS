@@ -1,18 +1,27 @@
-Similar a desafio 7, pero:
-* Se cambió la persistencia de mensajes de MariaDB a MongoDB
-* Se agregó normalizacion/desnormalizacion de mensajes
-* Se agregó un endpoint que nos renderiza productos generados con Faker js
-* Detalles varios 
+Desafio 10, sesiones
+* Se agrega una pantalla de 'login', en la cual el usuario debe completar su nombre antes de acceder a los productos.
+* Esta sesión se guarda en MongoAtlas, persiste refrescos. Si se elimina manualmente en MongoAtlas, se deslogea.
+* Hay un botón de Logout que termina la sesión, da un mensaje y redirije luego al login.
 
 ----------------------------------------------
-### Los mensajes, tomados de MongoDB y mostrando el % de compresión
+### Pantalla de Login
 
-![img](https://imgur.com/17VmkVG.jpg)
-
-![img](https://imgur.com/IabKkFu.jpg)
+![img](https://imgur.com/1qCvtz8.jpg)
 
 ----------------------------------------------
 
-### Productos al azar, generador con faker al pegarle al endpoint http://localhost:8080/api/productos-test/
+### Logeado, en el dashboard
 
-![img](https://imgur.com/G5aivSL.jpg)
+![img](https://imgur.com/uqPVWu0.jpg)
+
+----------------------------------------------
+
+### Sesion en el MongoAtlas
+
+![img](https://imgur.com/Dw9qoz3.jpg)
+
+----------------------------------------------
+
+### Tras apretar 'logout'
+
+![img](https://imgur.com/2rybxkA.jpg)

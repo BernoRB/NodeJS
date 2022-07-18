@@ -1,5 +1,3 @@
-const { faker } = require("@faker-js/faker")
-
 const { tableExists, getAll, createTable, addProd } = require("./controllerDBprods")
 
 const getAllProducts = async () => {
@@ -24,7 +22,6 @@ const addProduct = async (newProduct) => {
     console.log(error)
   }
 }
-
 
 
 module.exports = { getAllProducts, addProduct }
