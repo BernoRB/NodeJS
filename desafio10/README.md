@@ -1,4 +1,5 @@
-Desafio 10, sesiones
+Desafio 10, sesiones.
+* Tomando como base el desafio 9, primero, se eliminó todo lo referido al 'chat/mensajes' y también todo lo referido a Faker.
 * Se agrega una pantalla de 'login', en la cual el usuario debe completar su nombre antes de acceder a los productos.
 * Esta sesión se guarda en MongoAtlas, persiste refrescos. Si se elimina manualmente en MongoAtlas, se deslogea.
 * Hay un botón de Logout que termina la sesión, da un mensaje y redirije luego al login.
