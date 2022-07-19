@@ -43,8 +43,6 @@ app.use(
   })
 )
 
-
-
 // Views engine
 app.engine(
   "hbs",
@@ -56,10 +54,8 @@ app.engine(
 app.set("views", path.join(__dirname, "public"))
 app.set("view engine", "hbs")
 
-
 const PORT = 8080
 httpServer.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`))
-
 
 // Socket
 io.on("connection", async (socket) => {
