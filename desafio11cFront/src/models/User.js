@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://localhost:27017/desafio11users", {
+mongoose.connect(process.env.MONGOURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

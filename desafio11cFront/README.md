@@ -18,7 +18,7 @@ Desafio 11, autenticación.
 
 ### Usuario registrado, guardado en DB, con contraseña encriptada.
 
-![img](https://imgur.com/YREO7Cl.jpg)
+![img](https://imgur.com/bZeoSxC.jpg)
 
 ----------------------------------------------
 
@@ -27,9 +27,9 @@ Desafio 11, autenticación.
 ![img](https://imgur.com/tPN6z81.jpg)
 ----------------------------------------------
 
-### Sesion en el MongoAtlas
+### Session en DB
 
-![img](https://imgur.com/0C41bxi.jpg)
+![img](https://imgur.com/Px5b7ne.jpg)
 
 ----------------------------------------------
 

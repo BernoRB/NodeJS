@@ -28,7 +28,7 @@ let baseSession = session({
   secret: 'Desafio11',
   resave: false,
   saveUninitialized: true,
-  maxAge: 60_000
+  cookie: {maxAge: 600_000}
 })
 
 app.use(express.json())
