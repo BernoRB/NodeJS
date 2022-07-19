@@ -5,6 +5,7 @@ Desafio 11, autenticación.
 * No se puede ir al 'dashboard' sin la sesión correctamente iniciada.
 * Si se intenta ir a alguna de ellas con la sesión correctamente iniciada, lo lleva al 'dashboard'.
 * Si hay error al registrar o si ingresa incorrectamente usuario/contraseña, se lo informa.
+* La contraseña se guarda encriptada con bcrypt.
 * Desde el dashboard se permite cerrar sesión con un botón dispuesto a tal fin.
 * Al hacer logout, lo despide y lo devuelve a la vista de login.
 
@@ -15,7 +16,7 @@ Desafio 11, autenticación.
 
 ----------------------------------------------
 
-### Usuario registrado, guardado en DB
+### Usuario registrado, guardado en DB, con contraseña encriptada.
 
 ![img](https://imgur.com/YREO7Cl.jpg)
 
