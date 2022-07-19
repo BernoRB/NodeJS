@@ -1,6 +1,6 @@
 const passport = require('passport')
 const local = require('passport-local')
-const { users } = require('./src/models/User.js')
+const { users } = require('../models/User.js')
 const { createHash, isValidPassword } = require('./utils.js')
 
 const LocalStrategy = local.Strategy

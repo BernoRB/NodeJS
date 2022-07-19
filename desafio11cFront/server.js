@@ -3,13 +3,11 @@ const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
-const { initializePassport } = require('./passport.config.js')
-
+const { initializePassport } = require('./src/utils/passport.config.js')
 const path = require("path")
 const { Server: IOServer } = require("socket.io")
 const { Server: HttpServer } = require("http")
 const { engine } = require("express-handlebars")
-
 const products = require("./src/controllers/controllerProds")
 
 const app = express()
@@ -22,10 +20,14 @@ httpServer.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PO
 
 // Sessions, passport
 let baseSession = session({
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/desafio11sessions' }),
+  store: MongoStore.create({ mongoUrl: process.env.MONGOURL }),
+  mongoOptions: {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
   secret: 'Desafio11',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 })
 
 app.use(express.json())
@@ -49,7 +51,6 @@ app.set("view engine", "hbs")
 
 // Socket
 io.on("connection", async (socket) => {
-  // Productos
   socket.emit("products", await products.getAllProducts())
   socket.on("new-product", async (newProduct) => {
     await products.addProduct(newProduct)

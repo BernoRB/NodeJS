@@ -1,28 +1,44 @@
-Desafio 10, sesiones.
-* Tomando como base el desafio 9, primero, se eliminó todo lo referido al 'chat/mensajes' y también todo lo referido a Faker.
-* Se agrega una pantalla de 'login', en la cual el usuario debe completar su nombre antes de acceder a los productos.
-* Esta sesión se guarda en MongoAtlas, persiste refrescos. Si se elimina manualmente en MongoAtlas, se deslogea.
-* Hay un botón de Logout que termina la sesión, da un mensaje y redirije luego al login.
+Desafio 11, autenticación.
+* Tomamos como base el desafio 10.
+* Se agregan las vistas de 'signup' y 'login'.
+* Cada una de estas nuevas vistas tiene un botón que redirije a la otra.
+* No se puede ir al 'dashboard' sin la sesión correctamente iniciada.
+* Si se intenta ir a alguna de ellas con la sesión correctamente iniciada, lo lleva al 'dashboard'.
+* Si hay error al registrar o si ingresa incorrectamente usuario/contraseña, se lo informa.
+* Desde el dashboard se permite cerrar sesión con un botón dispuesto a tal fin.
+* Al hacer logout, lo despide y lo devuelve a la vista de login.
 
 ----------------------------------------------
 ### Pantalla de Login
 
-![img](https://imgur.com/1qCvtz8.jpg)
+![img](https://imgur.com/H629NnO.jpg)
 
 ----------------------------------------------
 
-### Logeado, en el dashboard
+### Usuario registrado, guardado en DB
 
-![img](https://imgur.com/uqPVWu0.jpg)
+![img](https://imgur.com/YREO7Cl.jpg)
 
 ----------------------------------------------
 
 ### Sesion en el MongoAtlas
 
-![img](https://imgur.com/Dw9qoz3.jpg)
+![img](https://imgur.com/0C41bxi.jpg)
 
 ----------------------------------------------
 
 ### Tras apretar 'logout'
 
-![img](https://imgur.com/2rybxkA.jpg)
+![img](https://imgur.com/QHeGVyg.jpg)
+
+----------------------------------------------
+
+### Al ingresar erróneamente usuario o contraseña
+
+![img](https://imgur.com/C0oJqhO.jpg)
+
+----------------------------------------------
+
+### Session guardada en Mongo
+
+![img](https://imgur.com/SVp8aSV.jpg)
