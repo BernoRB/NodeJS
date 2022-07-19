@@ -27,12 +27,6 @@ Desafio 11, autenticación.
 ![img](https://imgur.com/tPN6z81.jpg)
 ----------------------------------------------
 
-### Session en DB
-
-![img](https://imgur.com/Px5b7ne.jpg)
-
-----------------------------------------------
-
 ### Tras apretar 'logout'
 
 ![img](https://imgur.com/QHeGVyg.jpg)
@@ -45,7 +39,7 @@ Desafio 11, autenticación.
 
 ----------------------------------------------
 
-### Session guardada en Mongo
+### Session en DB
 
 ![img](https://imgur.com/SVp8aSV.jpg)
 
