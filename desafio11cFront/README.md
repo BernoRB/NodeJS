@@ -22,6 +22,11 @@ Desafio 11, autenticación.
 
 ----------------------------------------------
 
+### Dashboard
+
+![img](https://imgur.com/tPN6z81.jpg)
+----------------------------------------------
+
 ### Sesion en el MongoAtlas
 
 ![img](https://imgur.com/0C41bxi.jpg)
@@ -43,3 +48,7 @@ Desafio 11, autenticación.
 ### Session guardada en Mongo
 
 ![img](https://imgur.com/SVp8aSV.jpg)
+
+
+
+
