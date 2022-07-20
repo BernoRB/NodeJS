@@ -74,6 +74,11 @@ io.on("connection", async (socket) => {
 })
 
 
+// Router consigna desafio 12
+const router = require('./src/routes/routerDesafio12.js')
+app.use('/api', router)
+
+
 // Rutas
 app.get('/', passport.authenticate('login', { failureRedirect: '/login' }), (req, res) => {
   res.redirect("/dashboard")
@@ -135,14 +140,3 @@ app.get('/logout', (req, res) => {
       })
   })
 })
-
-
-/*
-app.get('/', sessionChecker, (req, res) => {
-  res.redirect("/login")
-})
-app.get('/login', sessionChecker, login)
-app.post('/login', loginPost)
-app.get('/logout', logout)
-app.get('/dash', dash)
-*/
