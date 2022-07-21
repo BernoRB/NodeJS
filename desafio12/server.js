@@ -22,7 +22,7 @@ const argv = yargs.options({
     default: '8080'
   }
 })
-.argv
+  .argv
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -41,7 +41,7 @@ let baseSession = session({
   secret: 'Desafio11',
   resave: false,
   saveUninitialized: true,
-  cookie: {maxAge: 600_000}
+  cookie: { maxAge: 600_000 }
 })
 
 app.use(express.json())
@@ -77,6 +77,22 @@ io.on("connection", async (socket) => {
 // Router consigna desafio 12
 const router = require('./src/routes/routerDesafio12.js')
 app.use('/api', router)
+
+// Ruta info desafio 12
+app.get('/info', (req, res) => {
+  const info = {
+    arguments: process.argv.slice(2),
+    platform: process.platform,
+    nodeVersion: process.version,
+    memory: process.memoryUsage().rss,
+    execPath: process.execPath,
+    pid: process.pid,
+    projPath: process.cwd()
+  }
+  res.render("info", {
+    info
+  })
+})
 
 
 // Rutas

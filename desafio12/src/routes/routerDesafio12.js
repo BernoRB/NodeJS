@@ -11,7 +11,7 @@ router.use(express.urlencoded({extended:true}))
 // localhost:8080/randoms?cant=500000
 router.get('/randoms', (req, res) => {
     let cant = req.query.cant || 100_000_000
-    const forkedProcess = fork('./src/models/childRandom.js')
+    const forkedProcess = fork('./src/utils/childRandom.js')
     // Enviamos al child la variable con la que va a hacer lo suyo
     forkedProcess.send(cant)
     // Recibimos del child la respuesta //dato: TIENE que ser message, no es a tu gusto
@@ -19,11 +19,6 @@ router.get('/randoms', (req, res) => {
         return res.send(respuesta)
     })
 })
-
-
-
-// router.get('info')
-
 
 
 module.exports = router

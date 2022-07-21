@@ -1,0 +1,16 @@
+<div class="container m-3">
+    <div class="row bg-light rounded">
+        <h1>Información</h1>
+        {{#if info.arguments}}
+        {{#each info.arguments}}
+        <p>{{this}}</p>
+        {{/each}}
+        {{/if}}
+        <p>Plataforma: {{info.platform}}</p>
+        <p>Version de Node: {{info.nodeVersion}}</p>
+        <p>Memoria total reservada: {{info.memory}}</p>
+        <p>Process id: {{info.pid}}</p>
+        <p>Path de ejecución: {{info.execPath}}</p>
+        <p>Carpeta del proyecto: {{info.projPath}}</p>
+    </div>
+</div>
