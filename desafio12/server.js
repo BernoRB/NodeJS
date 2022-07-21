@@ -75,7 +75,7 @@ io.on("connection", async (socket) => {
 
 
 // Router consigna desafio 12
-const router = require('./src/routes/routerDesafio12.js')
+const router = require('./src/routes/routerRandomNumbers')
 app.use('/api', router)
 
 // Ruta info desafio 12
