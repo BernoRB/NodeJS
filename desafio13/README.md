@@ -64,9 +64,13 @@ pm2 start ./server.js --name="c8085" --watch -i 3 -- -- -p 8085
 ```
 
 --name nombra el proceso
+
 -i n crea cluster con n cpus
+
 --watch ve y resetea cuando la app cambia
+
 con -- suelto le indicamos que terminaron las opciones de pm2
+
 con -p XXXX indicamos el puerto
 
 ![img](https://imgur.com/G0uZ24Y.jpg)
