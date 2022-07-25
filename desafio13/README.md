@@ -1,11 +1,13 @@
 Desafio 13.
 
 ----------------------------------------------
-Se puede probar el modo fork/cluster por parámetro además del puerto
+Además del puerto, ahora se puede indicar por parámetro si iniciar en modo fork o cluster.
+```
 node server.js -p PORT -m fork
 node server.js -p PORT -m cluster
+```
 Si no se le indica, por defecto el puerto es 8080 y el modo es fork
-En la vista info se agrega la cantidad de procesadores
+En la vista /info se agrega la cantidad de procesadores
 
 ![img](https://imgur.com/5sG7cAT.jpg)
 ![img](https://imgur.com/9pclEj7.jpg)
