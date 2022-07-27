@@ -11,6 +11,7 @@ Vemos el tamaño mas pequeno con gzip que sin gzip:
 ![img](https://imgur.com/YzSWCHD.jpg)
 
 * Agregamos logs con Log4js:
+
 Archivo warn.log: rutas inexistentes a las que se intento acceder
 
 ![img](https://imgur.com/ORTxaPX.jpg)
