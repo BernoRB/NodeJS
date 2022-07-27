@@ -16,6 +16,7 @@ const { Server: HttpServer } = require("http")
 const { engine } = require("express-handlebars")
 
 
+
 // Yargs desafio 13
 const yargs = require('yargs/yargs')(process.argv.slice(2))
 const argv = yargs.options({
@@ -39,6 +40,11 @@ const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 //httpServer.listen(argv.port, () => console.log(`Servidor escuchando en el puerto ${argv.port}`))
 
+
+
+
+
+
 // Sessions, passport
 let baseSession = session({
   store: MongoStore.create({ mongoUrl: process.env.MONGOURL }),
@@ -46,7 +52,7 @@ let baseSession = session({
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  secret: 'Desafio13',
+  secret: 'Desafio11',
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 600_000 }
@@ -80,10 +86,6 @@ io.on("connection", async (socket) => {
     io.sockets.emit("products", prods)
   })
 })
-
-
-
-
 
 
 

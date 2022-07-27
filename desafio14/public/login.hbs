@@ -1,0 +1,25 @@
+<div class="container row m-3">
+    <div class="card m-3">
+        <h3 class="m-3">Iniciar sesion</h3>
+        <form autocomplete="off" action="/login" method="post">
+            <div class="form-group mb-3">
+                <label>Usuario:</label>
+                <input class="form-control" required type="text" name="username" required/>
+            </div>
+            <div class="form-group mb-3">
+                <label>Contraseña:</label>
+                <input class="form-control" required type="password" name="password" required/>
+            </div>
+            <div class="form-group mb-3">
+                <input class="btn btn-primary" type="submit" value="Enviar"/>
+            </div>
+            {{#if retry}}
+            <div class="alert bg-warning">Usuario o contraseña incorrectos</div>
+            {{/if}}
+        </form>                  
+    </div>
+    <div class="card m-3">
+        <h4 class="m-3">¿No tenés cuenta?</h4>
+        <button class="m-3 col-2 btn btn-secondary" onclick="location.href = '/signup'">Registrarse</button>
+    </div>
+</div>
