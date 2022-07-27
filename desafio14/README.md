@@ -2,13 +2,15 @@ Desafio 14
 
 ----------------------------------------------
 Con base en el 13
--Puede recibir el comando -g true para aplicar gzip compression en la ruta info
+
+*Puede recibir el comando -g true para aplicar gzip compression en la ruta info
+
 Vemos el tamaño mas pequeno con gzip que sin gzip:
 
 ![img](https://imgur.com/ph26q4i.jpg)
 ![img](https://imgur.com/YzSWCHD.jpg)
 
--Agregamos logs con Log4js:
+*Agregamos logs con Log4js:
 Archivo warn.log: rutas inexistentes a las que se intento acceder
 
 ![img](https://imgur.com/ORTxaPX.jpg)
