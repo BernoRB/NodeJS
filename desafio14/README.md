@@ -24,3 +24,11 @@ Consola: error + warn + info (rutas y metodos)
 
 ![img](https://imgur.com/Z57Qe6H.jpg)
 ![img](https://imgur.com/6lOh382.jpg)
+
+* Test artillery:
+
+Con el siguiente comando testeamos la carga con artillery, emulando 50 conexiones con 20 req cada una y guardando la salida en result_fork.txt
+
+```
+artillery quick --count 50 -n 20 http://localhost:8080/info > result_fork.txt
+```
