@@ -1,3 +1,9 @@
+function toggleform() {
+  const container = document.querySelector('.container');
+  container.classList.toggle('active');
+}
+
+
 //const socket = io()
 
 // Obtengo y emito nuevo producto

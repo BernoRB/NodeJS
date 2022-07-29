@@ -12,45 +12,33 @@
 
 <div class="container m-3">
     <div class="bg-light rounded">
-        <h3>Cargar nuevo producto:</h3>
-        <form id="formProds" action="/addProd" method="post">
-            <div class="mb-3">
-                <label for="title" class="fw-bold form-label">Nombre</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Ingrese el nombre"
-                    required>
-            </div>
-            <div class="mb-3">
-                <label for="price" class="fw-bold form-label">Precio</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Ingrese el precio"
-                    required>
-            </div>
-            <div class="mb-3">
-                <label for="thumbnail" class="fw-bold form-label">Descripcion</label>
-                <input type="text" class="form-control" id="thumbnail" name="desc"
-                    placeholder="Ingrese la descripción">
-            </div>
-            <div class="mb-3">
-                <label for="thumbnail" class="fw-bold form-label">Thumbnail</label>
-                <input type="text" class="form-control" id="thumbnail" name="thumbnail"
-                    placeholder="Ingrese la URL del thumbnail">
-            </div>
-            <div class="mb-3">
-                <label for="thumbnail" class="fw-bold form-label">Categoria</label>
-                <input type="text" class="form-control" id="thumbnail" name="category"
-                    placeholder="Ingrese el código">
-            </div>
-            <div class="mb-3">
-                <label for="thumbnail" class="fw-bold form-label">Stock</label>
-                <input type="text" class="form-control" id="thumbnail" name="stock"
-                    placeholder="Ingrese el stock">
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
-    </div>
-    <br><br>
-    <hr>
 
     <h3>Lista de Productos</h3>
-    <div id="divProds"></div>
+    <div id="divProds">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Thumbnail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <th scope="row">{{this.title}}</th>
+                    <td>{{this.desc}}</td>
+                    <td>{{this.category}}</td>
+                    <td>{{this.price}}</td>
+                    <td> <img src="{{this.thumbnail}}" alt="{{this.title}}" width="40px"></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+
+    </div>
 
 </div>

@@ -1,31 +1,23 @@
 const passport = require('passport')
 const express = require("express")
 const router = express.Router()
-const { addProducts }  = require('../controllers/controllerProds')
+const { addProducts, getProducts }  = require('../controllers/controllerProds')
 
 
-// Productos
+
 router.get('/', passport.authenticate('login', { failureRedirect: '/login' }), (req, res) => {
     res.redirect("/productos")
 })
 
-router.get('/productos', (req, res) => {
-    if (req.user) {
-        res.render("dash", {
-            username: req.user.username,
-            email: req.user.email,
-            loggedIn: true
-        })
-    } else
-        res.redirect('/login')
+// Trae los productos y los renderiza en dashboard
+router.get('/productos', getProducts)
+
+// Renderiza vista para agregar productos
+router.get('/addProd', (req, res) => {
+    res.render('addProd')
 })
 
-
 router.post('/addProd', addProducts)
-
-
-
-
 
 
 
