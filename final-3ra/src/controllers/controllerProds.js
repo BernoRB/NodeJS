@@ -1,5 +1,5 @@
 const { Products } = require('../models/Product.js')
-const { loggerWarn } = require('../utils/logger.js')
+//const { loggerWarn } = require('../utils/logger.js')
 
 // Agrega, funciona
 const addProducts = async (req, res) => {

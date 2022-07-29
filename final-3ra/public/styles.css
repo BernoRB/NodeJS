@@ -1,5 +1,91 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+/* -------------- */
+/*     NAVBAR     */
+/* Snipper de:    */
+/* https://bbbootstrap.com/snippets/navigation-bar-icons-nav-tabs-68822048 */
+/* -------------- */
+
+body{
+    border-radius: 10px;
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+#logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.navbar-brand {
+    padding: 6px 20px;
+    font-size: 16px;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.nav-item {
+    padding: 0px 8px;
+    margin: 0px 3px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* No se usa right now
+.nav-item.active {
+    background-color: #9E9E9E;
+}
+*/
+.nav-item:hover {
+    background-color: #9E9E9E;
+}
+
+.nav-link {
+    padding: 5px;
+}
+
+
+
+/* -------------- */
+/*    PRODUCTOS   */
+/*   Snippet de:  */
+/* https://bbbootstrap.com/snippets/bootstrap-colorful-ecommerce-product-list-48987425 */
+/* -------------- */
+
+.card{
+/*  width: 400px;*/
+  border: 1px;
+  border-radius: 0px;
+   
+  background-color: #fff;
+}
+.text1{
+  font-size:13px;
+  color:#cbcbcb;
+}
+
+.info{
+  line-height: 17px;
+}
+.cost span{
+  color:#fb3531;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+
+/* -------------- */
+/* LOGIN Y SIGNUP */
+/* Snipper de:    */
+/* https://bbbootstrap.com/snippets/bootstrap-5-animated-login-signup-form-44730480 */
+/* -------------- */
+
 * {
     padding: 0;
     margin: 0;
@@ -169,3 +255,5 @@ section .container.active .signinbox .imagebox {
         width: 100%
     }
 }
+
+
