@@ -1,12 +1,15 @@
 const passport = require('passport')
 const express = require("express")
 const router = express.Router()
+const { addProducts }  = require('../controllers/controllerProds')
 
+
+// Productos
 router.get('/', passport.authenticate('login', { failureRedirect: '/login' }), (req, res) => {
-    res.redirect("/dashboard")
+    res.redirect("/productos")
 })
 
-router.get('/dashboard', (req, res) => {
+router.get('/productos', (req, res) => {
     if (req.user) {
         res.render("dash", {
             username: req.user.username,
@@ -17,17 +20,25 @@ router.get('/dashboard', (req, res) => {
         res.redirect('/login')
 })
 
+
+router.post('/addProd', addProducts)
+
+
+
+
+
+
+
 router.get('/login', (req, res) => {
     if (req.user)
-        res.redirect('dashboard')
+        res.redirect('productos')
     res.render('login')
 })
 
 router.post('/login', passport.authenticate('login', { failureRedirect: '/retrylogin' }), (req, res) => {
-    res.redirect('/dashboard')
+    res.redirect('/productos')
 })
 
-// Si llega porque logeó mal
 router.get('/retrylogin', (req, res) => {
     res.render("login", {
         retry: true
@@ -36,12 +47,12 @@ router.get('/retrylogin', (req, res) => {
 
 router.get('/signup', (req, res) => {
     if (req.user)
-        res.redirect('dashboard')
+        res.redirect('productos')
     res.render('signup')
 })
 
 router.post('/signup', passport.authenticate('register', { failureRedirect: '/retrysignup' }), (req, res) => {
-    res.redirect('/dashboard')
+    res.redirect('/productos')
 })
 
 router.get('/retrysignup', (req, res) => {
@@ -62,5 +73,9 @@ router.get('/logout', (req, res) => {
             })
     })
 })
+
+
+
+
 
 module.exports = router

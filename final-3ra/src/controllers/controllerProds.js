@@ -1,27 +1,14 @@
-const { tableExists, getAll, createTable, addProd } = require("./controllerDBprods")
+const { products } = require('../models/Product.js')
 
-const getAllProducts = async () => {
-  try {
-    const exists = await tableExists()
-    if (exists)
-      return await getAll()
-    await createTable()
-  } 
-  catch (error) {
-    console.log(error)
-  }
+// Agrega, funciona
+const addProducts = async (req, res) => {
+    const product = req.body
+    await products.create(product)
+    res.json('tamos')
 }
 
-const addProduct = async (newProduct) => {
-  try {
-    const exists = await tableExists()
-    if (!exists) await createTable()
-    await addProd(newProduct)
-  } 
-  catch (error) {
-    console.log(error)
-  }
-}
+// Listar
+// Modificar
+// Eliminar
 
-
-module.exports = { getAllProducts, addProduct }
+module.exports = { addProducts }

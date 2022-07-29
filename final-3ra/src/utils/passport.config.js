@@ -19,7 +19,12 @@ const initializePassport = () => {
                     const newUser = {
                         username,
                         password: createHash(password),
-                        email: req.body.email
+                        email: req.body.email,
+                        name: req.body.name,
+                        address: req.body.address,
+                        age: req.body.age,
+                        phone: req.body.phone,
+                        avatar: req.body.avatar
                     }
                     try {
                         let result = await users.create(newUser)

@@ -6,20 +6,18 @@ const MongoStore = require('connect-mongo')
 const { initializePassport } = require('./src/utils/passport.config.js')
 const passport = require('passport')
 
-const cluster = require('cluster');
-const core = require('os');
+//const cluster = require('cluster');
+//const core = require('os');
 
 const { Server: IOServer } = require("socket.io")
 const { Server: HttpServer } = require("http")
 const { engine } = require("express-handlebars")
-
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
-
 
 // Sessions
 let baseSession = session({
@@ -49,6 +47,19 @@ app.set("views", path.join(__dirname, "public"))
 app.set("view engine", "hbs")
 
 
+
+
+// Conectamos a la DB
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGOURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+
+
+
+
 /*
 // Socket
 io.on("connection", async (socket) => {
@@ -69,6 +80,6 @@ const mwLogger = require('./src/middlewares/logger')
 const router = require('./src/routes/mainRoutes')
 app.use('/', mwLogger, router)
 app.get('*', (req, res) => {
-    logger.loggerWarn.warn(`URL: ${req.url}, METODO: ${req.method}`)
+    //logger.loggerWarn.warn(`URL: ${req.url}, METODO: ${req.method}`)
     res.json('404')
 })
