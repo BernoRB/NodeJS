@@ -36,7 +36,7 @@ const getProducts = async (req, res) => {
 const deleteProducts = async (req, res) => {
     const id = req.params.id
     try {
-        await Products.findOneAndDelete(id).lean().exec()
+        await Products.findOneAndDelete(id) // .lean().exec()
         res.json(id)
     }
     catch (error) {
@@ -45,7 +45,16 @@ const deleteProducts = async (req, res) => {
 }
 
 
+// Modificar productos por ID, data por body
+const modifyProducts = async (req, res) => {
+    const id = req.params.id
+    const product = Products.findById(id).lean().exec()
+    if (product !== null) {
+        await Products.findOneAndUpdate({ _id: id }, req.body)
+        res.status(200).json({ mensaje: `Se ha actualizado el producto ${id}` });
+    } else {
+        res.status(400).json({ error: 'Producto no encontrado' });
+    }
+}
 
-// Modificar
-
-module.exports = { addProducts, getProducts, deleteProducts }
+module.exports = { addProducts, getProducts, deleteProducts, modifyProducts }

@@ -77,8 +77,13 @@ const PORT = 8080
 httpServer.listen(PORT, () => { console.log(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
 
 const mwLogger = require('./src/middlewares/logger')
-const router = require('./src/routes/mainRoutes')
-app.use('/', mwLogger, router)
+const routerUsers = require('./src/routes/users.routes')
+const routerProducts = require('./src/routes/products.routes')
+app.use('/', mwLogger, routerUsers)
+app.use('/productos', routerProducts)
+
+
+
 app.get('*', (req, res) => {
     //logger.loggerWarn.warn(`URL: ${req.url}, METODO: ${req.method}`)
     res.json('404')
