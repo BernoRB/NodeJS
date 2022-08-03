@@ -24,6 +24,10 @@ const ProductSchema = new mongoose.Schema({
     stock:{
         type: Number,
         required: false,
+    },
+    quantityInCart: {
+        type: Number,
+        default: 1
     }
 })
 

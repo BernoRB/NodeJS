@@ -1,16 +1,7 @@
 <div class="container-fluid px-0">
     <nav class="navbar navbar-expand-md navbar-dark bg-black px-0">
-        <a class="navbar-brand mr-5" href="#" id="navbarDropdown"
-        ><img id="logo" src="https://i.imgur.com/K7Nwq4V.jpg">
+        <a class="navbar-brand mr-5" href="#" id="navbarDropdown"><img id="logo" src="https://i.imgur.com/K7Nwq4V.jpg">
             &nbsp;&nbsp;&nbsp;{{username}} ({{email}}) </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action1</a>
-            <a class="dropdown-item" href="#">Action2</a>
-            <a class="dropdown-item" href="#">Action3</a>
-            <a class="dropdown-item" href="#">Action4</a>
-        </div>
-
 
         <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,15 +11,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="/productos">Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My Account</a>
+                    <a class="nav-link" href="#">Mi cuenta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My Cart</a>
+                    <a class="nav-link" href="/carrito/{{cartId}}/productos">Carrito</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="float:right;">
                     <a class="nav-link btn btn-primary" href="/logout">Logout</a>
                 </li>
             </ul>
@@ -66,58 +57,16 @@
                     <div class="cost mt-3 text-dark">
                         <span>${{this.price}}</span>
                     </div>
-                    <div class="p-3 bg-danger text-center text-white mt-3">
-                        <span class="text-uppercase">Add to cart</span>
-                    </div>
+
+                    <!--Al clickear, va a la ruta segun el cart id. Se pasa por body el id del prod que eligio-->
+                    <form action="/carrito/{{../cartId}}/productos" method="post">
+                        <input type="hidden" name="productId" value={{this._id}} />
+                        <button type="submit" class="btn btn-outline-danger btn-sm mt-3 mb-3">AÑADIR AL CARRO</button>
+                    </form>
+
                 </div>
             </div>
         </div>
         {{/each}}
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div class="container m-3">
-    <div class="bg-light rounded">
-
-    <h3>Lista de Productos</h3>
-    <div id="divProds">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Thumbnail</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each products}}
-                <tr>
-                    <th scope="row">{{this.title}}</th>
-                    <td>{{this.desc}}</td>
-                    <td>{{this.category}}</td>
-                    <td>{{this.price}}</td>
-                    <td> <img src="{{this.thumbnail}}" alt="{{this.title}}" width="40px"></td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-
-
-    </div>
-
-</div>
--->

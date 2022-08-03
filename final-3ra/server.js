@@ -59,7 +59,6 @@ mongoose.connect(process.env.MONGOURL, {
 
 
 
-
 /*
 // Socket
 io.on("connection", async (socket) => {
@@ -72,6 +71,10 @@ io.on("connection", async (socket) => {
 })
 */
 
+// Para hacer DELETE y PUT desde un form
+var methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 const PORT = 8080
 
 httpServer.listen(PORT, () => { console.log(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
@@ -79,9 +82,10 @@ httpServer.listen(PORT, () => { console.log(`Escuchando en el puerto ${httpServe
 const mwLogger = require('./src/middlewares/logger')
 const routerUsers = require('./src/routes/users.routes')
 const routerProducts = require('./src/routes/products.routes')
+const routerCarts = require('./src/routes/carts.router')
 app.use('/', mwLogger, routerUsers)
 app.use('/productos', routerProducts)
-
+app.use('/carrito', routerCarts)
 
 
 app.get('*', (req, res) => {

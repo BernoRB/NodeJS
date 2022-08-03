@@ -1,5 +1,7 @@
 const { Products } = require('../models/Product.js')
 //const { loggerWarn } = require('../utils/logger.js')
+const { Carts } = require('../models/Carts')
+const { listenerCount } = require('connect-mongo')
 
 // Agrega, funciona
 const addProducts = async (req, res) => {
@@ -19,12 +21,14 @@ const getProducts = async (req, res) => {
             else
                 res.status(400).json({ error: 'Producto no encontrado' })
         } else {
-            const products = await Products.find().lean() //el lean evita un warn de hbs
+            let cartId = await Carts.findOne({ email: req.user.email }, '_id').exec() // Traemos el CART ID para renderizar los botones con href dinamico
+            let products = await Products.find().lean() //el lean evita un warn de hbs
             res.render("dash", {
                 username: req.user.username,
                 email: req.user.email,
                 loggedIn: true,
-                products: products
+                products: products,
+                cartId: cartId._id //Genera el botón "add to cart" con ruta dinamica segun id del carrito actual
             })
         }
     } else
