@@ -19,6 +19,7 @@ const newUserMail = async (req, res) => {
 
 
 const newOrderCommunications = async (req, res) => {
+    
     let asunto = ''
     let prods = (req.body.products).replace(/%20/g, ' ')
     prods = JSON.parse(prods)    
@@ -29,8 +30,10 @@ const newOrderCommunications = async (req, res) => {
 
     sendmail(`Nueva orden de ${req.body.username} (${req.body.email})`, asunto)
     sendsms(`Su pedido ha sido recibido y se encuentra en proceso. Total: ${req.body.totalOrder}`, process.env.SMSTO)
+    
     res.redirect('/productos')
-}
+    
+} 
 
 
 

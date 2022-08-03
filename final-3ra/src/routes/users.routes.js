@@ -25,7 +25,6 @@ router.get('/retrylogin', (req, res) => {
     })
 })
 
-
 router.post('/signup', passport.authenticate('register', { failureRedirect: '/retrysignup' }), newUserMail)
 
 router.get('/retrysignup', (req, res) => {

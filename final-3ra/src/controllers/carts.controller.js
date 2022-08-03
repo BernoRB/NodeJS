@@ -88,4 +88,19 @@ const deleteFromCart = async (req, res) => {
 }
 
 
-module.exports = { createCart, addToCart, getCart, deleteFromCart }
+// Dos destroyCart
+// Uno como middleware para cuando le pego por la web tras confirmar la orden
+// El otro para pegarle por postman y cumplir la consigna de que exista esa ruta delete
+const destroyCartMw = async (req, res, next) => {
+    await Carts.deleteOne({ id : req.body.cartId })
+    next()
+}
+
+const destroyCart = async (req, res) => {
+    await Carts.deleteOne({ id : req.params.id })
+    res.json('Eliminado')
+}
+
+
+
+module.exports = { createCart, addToCart, getCart, deleteFromCart, destroyCart, destroyCartMw }

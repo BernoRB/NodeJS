@@ -1,7 +1,7 @@
 const { Products } = require('../models/Product.js')
 //const { loggerWarn } = require('../utils/logger.js')
 const { Carts } = require('../models/Carts')
-const { listenerCount } = require('connect-mongo')
+require('dotenv').config()
 
 // Agrega, funciona
 const addProducts = async (req, res) => {
@@ -12,6 +12,7 @@ const addProducts = async (req, res) => {
 
 // Listar, todos o por ID
 const getProducts = async (req, res) => {
+    const isAdmin = process.env.ADMIN == 'YES'
     if (req.user) {
         const id = req.params.id || null
         if (id != null) {
@@ -28,7 +29,8 @@ const getProducts = async (req, res) => {
                 email: req.user.email,
                 loggedIn: true,
                 products: products,
-                cartId: cartId._id //Genera el botón "add to cart" con ruta dinamica segun id del carrito actual
+                cartId: cartId._id, //Genera el botón "add to cart" con ruta dinamica segun id del carrito actual
+                isAdmin: isAdmin
             })
         }
     } else
