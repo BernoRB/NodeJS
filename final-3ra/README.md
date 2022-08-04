@@ -1,5 +1,5 @@
 ## Desafio final: tercer entrega
-#### En este readme me centraré en mostrar aquellas funcionalidades que componen la tercer entrega
+#### En este readme me centraré en mostrar aquellas funcionalidades que componen la tercer entrega y algunas cosas de carrito y producto que no son estrictamente de esta entrega sino de anteriores pero que son necesarias para mostrar algunas cosas que sí son de esta.
 ----------------------------------------------
 
 Al entrar a la página ('/') sin estar logeado, se llega al menú de login:
