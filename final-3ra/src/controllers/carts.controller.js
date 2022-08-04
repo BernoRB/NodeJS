@@ -52,6 +52,7 @@ const addToCart = async (req, res) => {
 
 
 const getCart = async (req, res) => {
+    const isAdmin = process.env.ADMIN == 'YES'
     const idCart = req.params.id
     let cart = await Carts.findOne({ id: idCart })
     let totalOrder = 0
@@ -68,7 +69,8 @@ const getCart = async (req, res) => {
         loggedIn: true,
         cartId: idCart,
         totalOrder: totalOrder,
-        productsString: productsString
+        productsString: productsString,
+        isAdmin: isAdmin
     })
     
 }

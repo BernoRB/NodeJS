@@ -3,7 +3,19 @@ const { Products } = require('../models/Product.js')
 const { Carts } = require('../models/Carts')
 require('dotenv').config()
 
-// Agrega, funciona
+const renderAddProducts = async (req, res) => {
+    const isAdmin = process.env.ADMIN == 'YES'
+    let cartId = await Carts.findOne({ email: req.user.email }, '_id').exec() // Traemos el CART ID para renderizar los botones con href dinamico
+    res.render('addProd', {
+        username: req.user.username,
+        email: req.user.email,
+        isAdmin: isAdmin,
+        avatar: `images/${req.user.avatar}`,
+        cartId: cartId._id
+    })
+}
+
+// Agrega productos
 const addProducts = async (req, res) => {
     const product = {
         title : req.body.title,
@@ -71,4 +83,4 @@ const modifyProducts = async (req, res) => {
     }
 }
 
-module.exports = { addProducts, getProducts, deleteProducts, modifyProducts }
+module.exports = { addProducts, renderAddProducts, getProducts, deleteProducts, modifyProducts }
