@@ -27,6 +27,7 @@ const getProducts = async (req, res) => {
             res.render("dash", {
                 username: req.user.username,
                 email: req.user.email,
+                avatar: `images/${req.user.avatar}`,
                 loggedIn: true,
                 products: products,
                 cartId: cartId._id, //Genera el botón "add to cart" con ruta dinamica segun id del carrito actual

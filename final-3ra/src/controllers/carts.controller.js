@@ -63,6 +63,7 @@ const getCart = async (req, res) => {
     res.render('cart', {
         username: req.user.username,
         email: req.user.email,
+        avatar: `images/${req.user.avatar}`,
         products: cart.products,
         loggedIn: true,
         cartId: idCart,
