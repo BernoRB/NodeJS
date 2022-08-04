@@ -15,7 +15,8 @@ const { engine } = require("express-handlebars")
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, "public")))
+//app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(__dirname+'/public'));
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 

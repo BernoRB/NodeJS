@@ -1,7 +1,7 @@
 <div class="container m-3">
     <div class="bg-light rounded">
         <h3>Cargar nuevo producto:</h3>
-        <form id="formProds" action="addProd" method="post">
+        <form id="formProds" action="addProd" enctype="multipart/form-data" method="POST">
             <div class="mb-3">
                 <label for="title" class="fw-bold form-label">Nombre</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Ingrese el nombre"
@@ -17,9 +17,9 @@
                 <input type="text" class="form-control" id="thumbnail" name="desc" placeholder="Ingrese la descripción">
             </div>
             <div class="mb-3">
-                <label for="thumbnail" class="fw-bold form-label">Thumbnail</label>
-                <input type="text" class="form-control" id="thumbnail" name="thumbnail"
-                    placeholder="Ingrese la URL del thumbnail">
+                <label for="thumbnail" class="fw-bold form-label">Imagen</label>
+                <input type="file" class="form-control" id="thumbnail" name="thumbnail"
+                    placeholder="Foto del producto">
             </div>
             <div class="mb-3">
                 <label for="thumbnail" class="fw-bold form-label">Categoria</label>

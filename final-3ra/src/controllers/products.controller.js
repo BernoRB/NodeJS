@@ -5,7 +5,14 @@ require('dotenv').config()
 
 // Agrega, funciona
 const addProducts = async (req, res) => {
-    const product = req.body
+    const product = {
+        title : req.body.title,
+        price : req.body.price,
+        desc : req.body.desc,
+        thumbnail : req.file.filename,
+        category : req.body.category,
+        stock : req.body.stock,
+    }
     await Products.create(product)
     res.redirect('/productos')
 }
