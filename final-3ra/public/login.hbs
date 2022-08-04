@@ -23,7 +23,7 @@
             </div>
         </form>
 
-        <form autocomplete="off" action="/signup" method="post">
+        <form autocomplete="off" action="/signup" enctype="multipart/form-data" method="POST">
             <div class="user signupbox">
                 <div class="formbox">
                     <div class="form">
@@ -34,8 +34,9 @@
                         <input type="text" placeholder="Name" name="name">
                         <input type="text" placeholder="Adress" name="adress">
                         <input type="text" placeholder="Age" name="age">
-                        <input type="text" placeholder="Phone" name="phone">
-                        <input type="text" placeholder="Avatar" name="avatar">
+                        <input type="text" placeholder="Phone" id="phone" name="phone">
+
+                        <input type="file" placeholder="Avatar" name="avatar">
 
                         <input type="submit" value="Signup">
                         <p class="signup-text">Already have an account?

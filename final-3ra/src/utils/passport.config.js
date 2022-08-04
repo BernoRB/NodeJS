@@ -24,17 +24,19 @@ const initializePassport = () => {
                         address: req.body.address,
                         age: req.body.age,
                         phone: req.body.phone,
-                        avatar: req.body.avatar
+                        avatar: req.file.filename
                     }
                     try {
                         let result = await users.create(newUser)
                         return done(null, result)
                     } catch(err) {
-                        logger.loggerError.error(`ERROR: ${err}`)
+                        console.log(err)
+                        //logger.loggerError.error(`ERROR: ${err}`)
                         done(err)
                     }
                 } catch(err) {
-                    logger.loggerError.error(`ERROR: ${err}`)
+                    //logger.loggerError.error(`ERROR: ${err}`)
+                    console.log(err)
                     done(err)
                 }
             }

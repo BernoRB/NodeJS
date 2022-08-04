@@ -2,6 +2,7 @@ const passport = require('passport')
 const express = require("express")
 const router = express.Router()
 const { newUserMail } = require('../controllers/communications.controller')
+const { imageUpload } = require('../utils/multer')
 
 router.get('/', passport.authenticate('login', { failureRedirect: '/login' }), (req, res) => {
     res.redirect("/productos")
@@ -25,10 +26,15 @@ router.get('/retrylogin', (req, res) => {
     })
 })
 
-router.post('/signup', passport.authenticate('register', { failureRedirect: '/retrysignup' }), newUserMail)
+//router.post('/signup', passport.authenticate('register',{failureRedirect:'/retrysignup'}), newUserMail)
+router.post('/signup', [
+    imageUpload.single('avatar'),
+    passport.authenticate('register', { failureRedirect: '/retrysignup' }),
+    ], newUserMail )
+    
 
 router.get('/retrysignup', (req, res) => {
-    res.render("signup", {
+    res.render("login", {
         retry: true
     })
 })
