@@ -44,7 +44,7 @@ app.engine(
         extname: ".hbs",
     })
 )
-app.set("views", path.join(__dirname, "public"))
+app.set("views", path.join(__dirname, "public/views"))
 app.set("view engine", "hbs")
 
 
