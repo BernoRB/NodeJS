@@ -1,9 +1,7 @@
 require('dotenv').config()
 const twilio = require('twilio')
-
 const accountSid = process.env.ACCOUNTSID
 const authToken = process.env.AUTHTOKEN
-
 const client = twilio(accountSid, authToken)
 
 module.exports = async (body, to) => {
@@ -20,6 +18,6 @@ module.exports = async (body, to) => {
             to:   smsOptions.to
         })
     } catch (error) {
-        console.log(error)
+        logger.loggerError.error(`ERROR: ${error}`)
     }
 }

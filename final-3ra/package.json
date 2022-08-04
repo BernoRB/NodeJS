@@ -9,6 +9,7 @@
   "license": "ISC",
   "author": "",
   "dependencies": {
+    "artillery": "^2.0.0-22",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",

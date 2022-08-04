@@ -1,7 +1,6 @@
-Desafio 14
-
+## Desafio Final: tercer entrega
+#### probando
 ----------------------------------------------
-Con base en el 13
 
 * Puede recibir el comando -g true para aplicar gzip compression en la ruta info
 
@@ -27,8 +26,5 @@ Consola: error + warn + info (rutas y metodos)
 
 * Test artillery:
 
-Con el siguiente comando testeamos la carga con artillery, emulando 50 conexiones con 20 req cada una y guardando la salida en result_fork.txt
 
-```
-artillery quick --count 50 -n 20 http://localhost:8080/info > result_fork.txt
 ```

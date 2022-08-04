@@ -3,7 +3,7 @@ const express = require("express")
 const router = express.Router()
 const { newUserMail } = require('../controllers/communications.controller')
 const { imageUpload } = require('../utils/multer')
-const { mainGet, loginGet, loginPost, retryLogin, retrySignup, logout } = require('../controllers/users.controller')
+const { mainGet, loginGet, loginPost, retryLogin, retrySignup, myAccount, logout } = require('../controllers/users.controller')
 
 router.get('/', passport.authenticate('login', { failureRedirect: '/login' }), mainGet)
 router.get('/login', loginGet)
@@ -14,6 +14,7 @@ router.post('/signup', [
     passport.authenticate('register', { failureRedirect: '/retrysignup' }),
 ], newUserMail )
 router.get('/retrysignup', retrySignup)
+router.get('/micuenta', myAccount)
 router.get('/logout', logout)
 
 module.exports = router

@@ -1,35 +1,23 @@
 require('dotenv').config()
 const path = require("path")
 const express = require('express')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')
 const { initializePassport } = require('./src/utils/passport.config.js')
 const passport = require('passport')
-
+const baseSession = require('./src/utils/session')
+const logger = require('./src/utils/logger')
 //const cluster = require('cluster');
 //const core = require('os');
-
-const { Server: IOServer } = require("socket.io")
+//const { Server: IOServer } = require("socket.io")
 const { Server: HttpServer } = require("http")
 const { engine } = require("express-handlebars")
+const methodOverride = require('method-override')
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
-//app.use(express.static(path.join(__dirname, "public")))
 app.use(express.static(__dirname+'/public'));
 const httpServer = new HttpServer(app)
-const io = new IOServer(httpServer)
-
-// Sessions
-let baseSession = session({
-    store: MongoStore.create({ mongoUrl: process.env.MONGOURL }),
-    mongoOptions: {        useNewUrlParser: true,        useUnifiedTopology: true,    },
-    secret: 'f1n4lc0d3r',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 600_000 }
-})
-
+//const io = new IOServer(httpServer)
+app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(baseSession)
 initializePassport()
@@ -47,18 +35,12 @@ app.engine(
 app.set("views", path.join(__dirname, "public/views"))
 app.set("view engine", "hbs")
 
-
-
-
 // Conectamos a la DB
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGOURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-
-
-
 
 /*
 // Socket
@@ -72,13 +54,21 @@ io.on("connection", async (socket) => {
 })
 */
 
-// Para hacer DELETE y PUT desde un form
-var methodOverride = require('method-override')
-app.use(methodOverride('_method'))
+// Posibilidad de iniciar en modo cluster
+const PORT = process.env.PORT || 5000
+if (process.env.MODE != 'fork') {
+    if (cluster.isPrimary) {
+        logger.loggerConsole.info(`Proceso principal ${process.pid}`)
+        for (let i = 0; i < core.cpus().length; i++)
+            cluster.fork()
+        cluster.on('exit', (worker) => {
+            cluster.fork()
+        })
+    } else
+        httpServer.listen(PORT, () => { logger.loggerConsole.info(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
+} else
+    httpServer.listen(PORT, () => { logger.loggerConsole.info(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
 
-const PORT = 8080
-
-httpServer.listen(PORT, () => { console.log(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
 
 const mwLogger = require('./src/middlewares/logger')
 const routerUsers = require('./src/routes/users.routes')
@@ -88,8 +78,7 @@ app.use('/', mwLogger, routerUsers)
 app.use('/productos', routerProducts)
 app.use('/carrito', routerCarts)
 
-
 app.get('*', (req, res) => {
-    //logger.loggerWarn.warn(`URL: ${req.url}, METODO: ${req.method}`)
+    logger.loggerWarn.warn(`URL: ${req.url}, METODO: ${req.method}`)
     res.json('404')
 })

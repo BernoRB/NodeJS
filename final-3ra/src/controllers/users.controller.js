@@ -26,6 +26,23 @@ const retrySignup = async (req, res) => {
     })
 }
 
+const myAccount = async (req, res) => {
+    if (req.user) {
+        res.render('account', {
+            username : req.user.username,
+            email : req.user.email,
+            name : req.user.name,
+            avatar: `../../images/${req.user.avatar}`,
+            address: req.user.address,
+            age: req.user.age,
+            phone: req.user.phone
+
+        })
+    } else {
+        res.render('login')
+    }
+}
+
 const logout = async (req, res) => {
     nameLogout = req.user.username
     req.logout((err) => {
@@ -39,5 +56,4 @@ const logout = async (req, res) => {
     })
 }
 
-
-module.exports = { mainGet, loginGet, loginPost, retryLogin, logout, retrySignup }
+module.exports = { mainGet, loginGet, loginPost, retryLogin, logout, myAccount, retrySignup }

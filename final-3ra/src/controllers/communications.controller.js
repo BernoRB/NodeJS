@@ -7,11 +7,10 @@ const newUserMail = async (req, res) => {
     Usuario: ${req.body.username} <br>
     Email: ${req.body.email} <br>
     Nombre: ${req.body.name} <br>
-    Direccion: ${req.body.adress} <br>
+    Direccion: ${req.body.address} <br>
     Edad: ${req.body.age} <br>
     Telefono: ${req.body.phone}
     `
-
     sendmail('Nuevo Registro', asunto)
     res.redirect('/productos')
 }
@@ -19,7 +18,6 @@ const newUserMail = async (req, res) => {
 
 
 const newOrderCommunications = async (req, res) => {
-    
     let asunto = ''
     let prods = (req.body.products).replace(/%20/g, ' ')
     prods = JSON.parse(prods)    
@@ -34,8 +32,5 @@ const newOrderCommunications = async (req, res) => {
     res.redirect('/productos')
     
 } 
-
-
-
 
 module.exports = { newUserMail, newOrderCommunications }

@@ -30,13 +30,11 @@ const initializePassport = () => {
                         let result = await users.create(newUser)
                         return done(null, result)
                     } catch(err) {
-                        console.log(err)
-                        //logger.loggerError.error(`ERROR: ${err}`)
+                        logger.loggerError.error(`ERROR: ${err}`)
                         done(err)
                     }
                 } catch(err) {
-                    //logger.loggerError.error(`ERROR: ${err}`)
-                    console.log(err)
+                    logger.loggerError.error(`ERROR: ${err}`)
                     done(err)
                 }
             }

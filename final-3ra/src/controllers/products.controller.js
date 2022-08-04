@@ -1,16 +1,15 @@
 const { Products } = require('../models/Product.js')
-//const { loggerWarn } = require('../utils/logger.js')
 const { Carts } = require('../models/Carts')
 require('dotenv').config()
 
 const renderAddProducts = async (req, res) => {
     const isAdmin = process.env.ADMIN == 'YES'
-    let cartId = await Carts.findOne({ email: req.user.email }, '_id').exec() // Traemos el CART ID para renderizar los botones con href dinamico
+    let cartId = await Carts.findOne({ email: req.user.email }, '_id').exec()
     res.render('addProd', {
         username: req.user.username,
         email: req.user.email,
         isAdmin: isAdmin,
-        avatar: `images/${req.user.avatar}`,
+        avatar: `../../images/${req.user.avatar}`,
         cartId: cartId._id
     })
 }
@@ -66,6 +65,7 @@ const deleteProducts = async (req, res) => {
         res.json(id)
     }
     catch (error) {
+        logger.loggerError.error(`ERROR: ${error}`)
         res.status(400).json({ error: 'Error' })
     }
 }

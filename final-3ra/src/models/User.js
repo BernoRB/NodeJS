@@ -1,10 +1,4 @@
 const mongoose = require('mongoose')
-/*
-mongoose.connect(process.env.MONGOURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})*/
-
 const collection = "Users"
 
 const UserSchema = new mongoose.Schema({

@@ -1,7 +1,5 @@
 const { Carts } = require('../models/Carts.js')
 const { Products } = require('../models/Product')
-//const { loggerWarn } = require('../utils/logger.js')
-
 
 const createCart = async (req, res, next) => {
     if (!req.user) {
@@ -20,9 +18,8 @@ const createCart = async (req, res, next) => {
 }
 
 // Busca un carrito en función del email del usuario
-// Lo pense asi dado que no se puede comprar como invitado y que no tiene sentido que un usuario tenga más de un carrito, por lo que 1 email = 1 carrito, siempre
 async function findCartByEmail(req) {
-    const hasCart = await Carts.findOne({ email: req.user.email }, '_id').exec() //el exec le indica que otherwise, null
+    const hasCart = await Carts.findOne({ email: req.user.email }, '_id').exec()
     return hasCart
 }
 
@@ -64,7 +61,7 @@ const getCart = async (req, res) => {
     res.render('cart', {
         username: req.user.username,
         email: req.user.email,
-        avatar: `images/${req.user.avatar}`,
+        avatar: `../../images/${req.user.avatar}`,
         products: cart.products,
         loggedIn: true,
         cartId: idCart,

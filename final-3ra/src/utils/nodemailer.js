@@ -1,4 +1,5 @@
 const { createTransport } = require('nodemailer')
+const logger = require('../utils/logger')
 
 const TEST_MAIL = 'louisa12@ethereal.email'
 
@@ -21,8 +22,8 @@ module.exports = function (subject, html) {
 
     try {
         const info =  transporter.sendMail(mailOptions)
-        console.log(info)
+        logger.loggerConsole.info(info)
     } catch (error) {
-        console.log(error)
+        logger.loggerError.error(`ERROR: ${error}`)
     }
 }
