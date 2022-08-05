@@ -1,4 +1,5 @@
 const { Products } = require('../models/Product.js')
+const logger = require('../utils/logger')
 
 async function save(dato) {
     try {

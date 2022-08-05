@@ -10,7 +10,7 @@ const renderAddProducts = async (req, res) => {
     res.render('addProd', {
         username: req.user.username,
         email: req.user.email,
-        isAdmin: isAdmin,
+        isAdmin,
         avatar: `../../images/${req.user.avatar}`,
         cartId: cartId._id
     })
@@ -45,9 +45,9 @@ const getProducts = async (req, res) => {
                 email: req.user.email,
                 avatar: `images/${req.user.avatar}`,
                 loggedIn: true,
-                products: products,
+                products,
                 cartId: cartId._id,
-                isAdmin: isAdmin
+                isAdmin
             })
         } else {
             res.json(products)

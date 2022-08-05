@@ -1,3 +1,5 @@
+const { getCartIdByEmail } = require('../services/carts.service')
+
 const mainGet = async (req, res) => {
     res.redirect('/productos')
 }
@@ -28,6 +30,9 @@ const retrySignup = async (req, res) => {
 
 const myAccount = async (req, res) => {
     if (req.user) {
+        const isAdmin = process.env.ADMIN == 'YES'
+        const cart = await getCartIdByEmail(req.user.email)
+        const cartId = cart._id
         res.render('account', {
             username : req.user.username,
             email : req.user.email,
@@ -35,8 +40,9 @@ const myAccount = async (req, res) => {
             avatar: `../../images/${req.user.avatar}`,
             address: req.user.address,
             age: req.user.age,
-            phone: req.user.phone
-
+            phone: req.user.phone,
+            cartId,
+            isAdmin
         })
     } else {
         res.render('login')

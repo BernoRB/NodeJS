@@ -1,4 +1,5 @@
 const { Carts } = require('../models/Carts')
+const logger = require('../utils/logger')
 
 // Devuelve un cartId que coincida con el campo que le pasen
 async function findCartId(datum, field) {
@@ -44,12 +45,9 @@ async function updateOnePush(id, prod) {
     }
 }
 
-async function updateOneSet(id, prod) {
+async function updateOneSet(id, prods) {
     try {
-        await Carts.updateOne(
-            { _id: id },
-            { $set: { products: prod } }
-        )
+    await Carts.updateOne({ id: id }, { $set: { 'products' : prods } })
     } catch (error) {
         logger.loggerError.error(`ERROR: ${error}`)
     }
