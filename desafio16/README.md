@@ -1,0 +1,2 @@
+## Desafio 16
+#### Esta entrega es igual en funcionalidades al tercer avance del proyecto final pero ahora está dividida en capas. Antes sólo contaba con router y controllers (conteniendo toda la lógica en estos últimos), ahora se dividió todo entre controllers, services y daos.

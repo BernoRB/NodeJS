@@ -1,0 +1,54 @@
+<section class="main-section">
+    <div class="container">
+
+        <form autocomplete="off" action="/login" method="post">
+            <div class="user signinbox">
+                <div class="imagebox"> <img src="https://imgur.com/jD3PcVX.jpg"> </div>
+                <div class="formbox">
+                    <div class="form">
+                        <h2>Bienvenido</h2>
+                        <input type="text" placeholder="Nombre de usuario" name="username">
+                        <input type="password" placeholder="Contraseña" name="password">
+                        <input type="submit" value="LOGIN">
+
+                        {{#if retryLogin}}
+                        <div class="alert bg-warning">Usuario o contraseña incorrectos</div>
+                        {{/if}}
+
+                        {{#if retrySignup}}
+                        <div class="alert bg-warning">Hubo un error al registrarse</div>
+                        {{/if}}
+
+                        <p class="signup-text">No tenés cuenta?
+                            <a href="#" onClick="toggleform();">Registrarse</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form autocomplete="off" action="/signup" enctype="multipart/form-data" method="POST">
+            <div class="user signupbox">
+                <div class="formbox">
+                    <div class="form">
+                        <h2>REGISTRO</h2>
+                        <input type="text" placeholder="Nombre de Usuario" name="username">
+                        <input type="email" placeholder="Email" name="email">
+                        <input type="password" placeholder="Contraseña" name="password">
+                        <input type="text" placeholder="Nombre" name="name">
+                        <input type="text" placeholder="Direccion" name="address">
+                        <input type="text" placeholder="Edad" name="age">
+                        <input type="text" placeholder="Telefono" id="phone" name="phone">
+                        <input type="file" placeholder="Avatar" name="avatar">
+                        <input type="submit" value="Enviar">
+                        <p class="signup-text">Ya tenés cuenta?
+                            <a href="#" onClick="toggleform();">Iniciar Sesión</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="imagebox"> <img src="https://imgur.com/ZDTY3DG.jpg"> </div>
+            </div>
+        </form>
+
+    </div>
+</section>

@@ -1,0 +1,29 @@
+{{> navbar}}
+
+<div class="container mb-5 mt-5">
+    <div class="row">
+        {{#each products}}
+        <div class="col-md-3">
+            <div class="card mt-3 border">
+                <div class="align-items-center text-center">
+                    <img src="/images/{{this.thumbnail}}" class="rounded" width="160">
+                    <h5>{{this.title}}</h5>
+                    <div class="mt-1 info">
+                        <span class="text1 d-block">{{this.category}}</span>
+                    </div>
+                    <div class="cost mt-1 text-dark">
+                        <span>${{this.price}}</span>
+                    </div>
+
+                    <!--Al clickear, va a la ruta segun el cart id. Se pasa por body el id del prod que eligio-->
+                    <form action="/carrito/{{../cartId}}/productos" method="post">
+                        <input type="hidden" name="productId" value={{this._id}} />
+                        <button type="submit" class="btn btn-outline-danger btn-sm mt-2 mb-3">AÑADIR AL CARRO</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

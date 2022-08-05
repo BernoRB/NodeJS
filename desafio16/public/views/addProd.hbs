@@ -1,0 +1,47 @@
+{{> navbar}}
+
+<div class="container m-3">
+    <div class="bg-light rounded">
+        <h3>Cargar nuevo producto:</h3>
+        <form id="formProds" action="addProd" enctype="multipart/form-data" method="POST">
+            <div class="mb-3">
+                <label for="title" class="fw-bold form-label">Nombre</label>
+                <input type="text" class="form-control" name="title" placeholder="Ingrese el nombre"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="fw-bold form-label">Precio</label>
+                <input type="number" class="form-control" name="price" placeholder="Ingrese el precio"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="fw-bold form-label">Descripcion</label>
+                <input type="text" class="form-control" name="desc" placeholder="Ingrese la descripción">
+            </div>
+            <div class="mb-3">
+                <label for="thumbnail" class="fw-bold form-label">Imagen</label>
+                <input type="file" class="form-control" name="thumbnail">
+            </div>
+            <div class="mb-3">
+                <label for="category" class="fw-bold form-label">Categoria</label>
+                <br>
+                <select name="category" form="formProds">
+                    <option value="Cabernet">Cabernet</option>
+                    <option value="Chardonay">Chardonay</option>
+                    <option value="Malbec">Malbec</option>
+                    <option value="Merlot">Merlot</option>
+                    <option value="Pinot Noir">Pinot Noir</option>
+                    <option value="Sauvignon Blanc">Sauvignon Blanc</option>
+                    <option value="Syrah">Syrah</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="stock" class="fw-bold form-label">Stock</label>
+                <input type="text" class="form-control" name="stock" placeholder="Ingrese el stock">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <br><br>
+    <hr>
+</div>
