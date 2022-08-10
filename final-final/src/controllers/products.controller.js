@@ -37,12 +37,17 @@ const getProducts = async (req, res) => {
     const isAdmin = process.env.ADMIN == 'YES'
     const id = req.params.id || null
     let products = await getProdsServ(id)
-    const { email } = req.user
-    const cartId = await getCartIdByEmail(email)
+    const cartId = await getCartIdByEmail(req.user.email)
+
     if (products) {
+        if(id) {
+            const prods = []
+            prods.push(products)
+            products = prods
+        }
         res.render("dash", {
             username: req.user.username,
-            email,
+            email: req.user.email,
             avatar: `images/${req.user.avatar}`,
             loggedIn: true,
             products,

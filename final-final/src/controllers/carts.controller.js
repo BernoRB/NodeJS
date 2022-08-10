@@ -22,9 +22,17 @@ const createCart = async (req, res, next) => {
 
 const addToCart = async (req, res) => {
     const idCart = req.params.id
+    // bien console.log(idCart)
+
     const idProd = req.body.productId
+    // bien console.log(idProd)
+
     const cart = await getCartById(idCart)
+    // bien console.log(cart)
+
     const prodToAdd = await getProdsServ(idProd)
+    // bien console.log(prodToAdd)
+
     const indexInCart = await isInCart(cart, idProd)
     if(indexInCart > -1) {
         const updatedCart = await increaseQuantity(cart, indexInCart)

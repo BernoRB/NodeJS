@@ -7,8 +7,8 @@ const transporter = createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-        user: 'louisa12@ethereal.email',
-        pass: 'KFfRsQu8U4kRYKhjCJ'
+        user: 'carli.sporer@ethereal.email',
+        pass: 'fd6dq7Pabs71sCpxkr'
     }
 })
 

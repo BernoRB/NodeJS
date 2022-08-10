@@ -1,11 +1,12 @@
 const sendmail = require('../utils/nodemailer')
 const sendsms = require('../utils/twilio')
 
-async function bodyNewOrder(orderProds, totalOrder) {
-    let body = ''
-    orderProds = JSON.parse(orderProds)    
+async function bodyNewOrder(orderProds, totalOrder, status) {
+    let body = `Estado de su orden: ${status} <br>`
+    orderProds = JSON.parse(orderProds)
     orderProds.forEach(prod => {
-        body += '<br>Producto: ' + prod.title + '<br> Precio: $' + prod.price + '<br> Categoria: ' + prod.category + '<br> Cantidad: ' + prod.quantityInCart + '<br>'
+        body += '<br>Producto: ' + prod.title + '<br> Precio: $' + prod.price + '<br> Categoria: ' 
+        + prod.category + '<br> Cantidad: ' + prod.quantityInCart + '<br>'
     })
     body += '<br> Total de la orden: $' + totalOrder
     return body

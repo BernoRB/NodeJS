@@ -6,13 +6,7 @@ async function createProduct(product) {
 
 async function getProdsServ(id) {
     if(id) {
-        const products = await findProdById(id)
-        if (products) {
-            const prods = []
-            prods.push(products)
-            return prods
-        } 
-        return null 
+        return await findProdById(id)
     } else {
         const products = await findAllProds()
         return products.sort(() => Math.random() - 0.5) 
