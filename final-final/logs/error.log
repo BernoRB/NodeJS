@@ -1,0 +1,8 @@
+[2022-07-27T18:03:47.344] [ERROR] errors - ERROR: TypeError: users.codigoRoto is not a function
+[2022-08-10T13:06:37.626] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "fdsfds" (type string) at path "_id" for model "Product"
+[2022-08-10T13:07:36.804] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "dsdasad" (type string) at path "_id" for model "Product"
+[2022-08-10T13:07:50.735] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "dsdasad" (type string) at path "_id" for model "Product"
+[2022-08-10T13:07:53.109] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "dsdasad" (type string) at path "_id" for model "Product"
+[2022-08-10T13:08:01.131] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "dsdasad" (type string) at path "_id" for model "Product"
+[2022-08-10T14:57:55.252] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "addp" (type string) at path "_id" for model "Product"
+[2022-08-10T14:58:06.343] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "categoria" (type string) at path "_id" for model "Product"
