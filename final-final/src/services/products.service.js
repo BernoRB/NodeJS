@@ -5,7 +5,18 @@ async function createProduct(product) {
 }
 
 async function getProdsServ(id) {
-    return id ? await findProdById(id) : await findAllProds()
+    if(id) {
+        const products = await findProdById(id)
+        if (products) {
+            const prods = []
+            prods.push(products)
+            return prods
+        } 
+        return null 
+    } else {
+        const products = await findAllProds()
+        return products.sort(() => Math.random() - 0.5) 
+    }
 }
 
 async function deleteProdsServ(id) {

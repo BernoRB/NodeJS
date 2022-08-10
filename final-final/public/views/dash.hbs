@@ -1,6 +1,19 @@
 {{> navbar}}
 
 <div class="container mb-5 mt-5">
+    
+    <div align="center">
+        <button class="btn filter-button" onclick="location.href='/productos'">Todos</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Cabernet'">Cabernet</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Chardonay'">Chardonnay</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Malbec'">Malbec</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Merlot'">Merlot</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Pinot Noir'">Pinot Noir</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Sauvignon Blanc'">Sauvignon Blanc</button>
+        <button class="btn filter-button" onclick="location.href='/productos/categoria/Syrah'">Syrah</button>
+    </div>
+
+
     <div class="row">
         {{#each products}}
         <div class="col-md-3">

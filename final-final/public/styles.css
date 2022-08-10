@@ -147,6 +147,33 @@ select:focus{
     }
 }
 
+/* -------------- */
+/*    FILTRADO    */
+/*   Snippet de:  */
+/* https://bbbootstrap.com/snippets/portfolio-gallery-filtering-category-84560971 */
+/* -------------- */
+
+
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #e20404;
+    border-radius: 5px;
+    text-align: center;
+    color: #e20404;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #e20404;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #e20404;
+
+}
 
 /* -------------- */
 /*    PRODUCTOS   */

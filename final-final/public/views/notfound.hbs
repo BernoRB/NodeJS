@@ -2,8 +2,12 @@
     <div class="container mt-4">
         <div class="row justify-content-center mt-4">
             <div class="col-md-12 text-center">
-                <span class="display-1 d-block">404</span>
+                <span class="display-1 d-block">ALTO AHÍ</span>
+                {{#if isProduct}}
+                <div class="mb-4 lead">El producto solicitado no existe</div>
+                {{else}}
                 <div class="mb-4 lead">La página a la que intentas acceder no existe</div>
+                {{/if}}
                 <a href="/" class="btn btn-primary">Volver al inicio</a>
             </div>
         </div>

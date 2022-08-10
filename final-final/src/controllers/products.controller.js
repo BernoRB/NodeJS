@@ -39,13 +39,7 @@ const getProducts = async (req, res) => {
     let products = await getProdsServ(id)
     const { email } = req.user
     const cartId = await getCartIdByEmail(email)
-
     if (products) {
-        if (id) {
-            const prods = []
-            prods.push(products)
-            products = prods
-        }
         res.render("dash", {
             username: req.user.username,
             email,
@@ -56,7 +50,7 @@ const getProducts = async (req, res) => {
             isAdmin
         })
     } else {
-        res.render('notfound')
+        res.render('notfound', { isProduct: true })
     }
 }
 
@@ -93,7 +87,7 @@ const showByCategory = async (req, res) => {
         res.render("dash", {
             username: req.user.username,
             email,
-            avatar: `images/${req.user.avatar}`,
+            avatar: `../../images/${req.user.avatar}`,
             loggedIn: true,
             products,
             cartId: cartId._id,
