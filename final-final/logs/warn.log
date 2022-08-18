@@ -120,3 +120,7 @@
 [2022-08-10T17:10:21.750] [WARN] warnings - URL: /productos/images/avatar_1659649025190.png, METODO: GET
 [2022-08-10T17:10:34.921] [WARN] warnings - URL: /productos/images/avatar_1659649025190.png, METODO: GET
 [2022-08-10T17:10:52.862] [WARN] warnings - URL: /productos/images/avatar_1659649025190.png, METODO: GET
+[2022-08-18T14:16:31.727] [WARN] warnings - URL: /socket.io/socket.io.js, METODO: GET
+[2022-08-18T14:20:26.915] [WARN] warnings - URL: /socket.io/socket.io.js, METODO: GET
+[2022-08-18T14:21:47.896] [WARN] warnings - URL: /socket.io/socket.io.js, METODO: GET
+[2022-08-18T14:24:26.970] [WARN] warnings - URL: /socket.io/socket.io.js, METODO: GET

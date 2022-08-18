@@ -6,7 +6,6 @@ const passport = require('passport')
 const baseSession = require('./src/utils/session')
 const logger = require('./src/utils/logger')
 //const cluster = require('cluster');
-//const core = require('os');
 //const { Server: IOServer } = require("socket.io")
 const { Server: HttpServer } = require("http")
 const { engine } = require("express-handlebars")
@@ -14,7 +13,7 @@ const methodOverride = require('method-override')
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname + '/public'));
 const httpServer = new HttpServer(app)
 //const io = new IOServer(httpServer)
 app.use(methodOverride('_method'))
@@ -42,6 +41,7 @@ mongoose.connect(process.env.MONGOURL, {
     useUnifiedTopology: true
 })
 
+
 /*
 // Socket
 io.on("connection", async (socket) => {
@@ -53,6 +53,12 @@ io.on("connection", async (socket) => {
     })
 })
 */
+
+
+
+
+
+
 
 // Posibilidad de iniciar en modo cluster
 const PORT = process.env.PORT || 5000
@@ -70,13 +76,24 @@ if (process.env.MODE != 'fork') {
     httpServer.listen(PORT, () => { logger.loggerConsole.info(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
 
 
+
+
+const socket = require("socket.io")
+const chatSocket = require("./src/utils/socket")
+const io = socket(httpServer)
+chatSocket(io)
+
+
+
 const mwLogger = require('./src/utils/middlewares/logger')
 const routerUsers = require('./src/routes/users.routes')
 const routerProducts = require('./src/routes/products.routes')
 const routerCarts = require('./src/routes/carts.router')
+const routerChat = require('./src/routes/chats.router')
 app.use('/', mwLogger, routerUsers)
 app.use('/productos', routerProducts)
 app.use('/carrito', routerCarts)
+app.use('/chat', routerChat)
 app.get('*', (req, res) => {
     logger.loggerWarn.warn(`URL: ${req.url}, METODO: ${req.method}`)
     res.render('notfound')

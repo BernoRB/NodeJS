@@ -1,7 +1,7 @@
 const { createTransport } = require('nodemailer')
 const logger = require('../utils/logger')
 
-const TEST_MAIL = 'louisa12@ethereal.email'
+const TEST_MAIL = process.env.ADMINMAIL
 
 const transporter = createTransport({
     host: 'smtp.ethereal.email',
