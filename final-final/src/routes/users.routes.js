@@ -3,8 +3,9 @@ const express = require("express")
 const router = express.Router()
 const { newUserMail } = require('../controllers/communications.controller')
 const { imageUpload } = require('../utils/multer')
-const { mainGet, loginGet, loginPost, retryLogin, retrySignup, myAccount, logout } = require('../controllers/users.controller')
+const { mainGet, loginGet, loginPost, retryLogin, retrySignup, myAccount, infoServer, logout } = require('../controllers/users.controller')
 const { isLogged, isNotLogged } = require('../utils/middlewares/loggedmw')
+const { isAdmin } = require('../utils/middlewares/isAdmin')
 
 router.get('/', passport.authenticate('login', { failureRedirect: '/login' }), mainGet)
 router.get('/login', isNotLogged, loginGet)
@@ -16,6 +17,7 @@ router.post('/signup', [
 ], newUserMail )
 router.get('/retrysignup', isNotLogged, retrySignup)
 router.get('/micuenta', isLogged, myAccount)
+router.get('/infoServer', [ isLogged, isAdmin ] , infoServer)
 router.get('/logout', isLogged, logout)
 
 module.exports = router
