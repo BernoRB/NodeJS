@@ -1,15 +1,16 @@
-module.exports = (io) => {
-    io.on('connection', (socket) => {
+// Aca exportamos una instancia del socket para que pueda ser utilizado desde el controller
+const socketio = require('socket.io')
 
-        console.log('New user connected')
-
-        socket.on('nuevo mensaje', (msj) => {
-            io.emit('nuevo mensaje', msj)
-        })
-
-        socket.on('disconnect', function () {
-            console.log('Usuario desconectado')
-        })
-
-    })
+let io
+module.exports = {
+    init(server) {
+        io = socketio(server)
+        return io
+    },
+    getIO() {
+        if (!io) {
+            throw new Error("Can't get io instance before calling .init()")
+        }
+        return io
+    }
 }

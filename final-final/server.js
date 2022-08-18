@@ -76,13 +76,8 @@ if (process.env.MODE != 'fork') {
     httpServer.listen(PORT, () => { logger.loggerConsole.info(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
 
 
-
-
-const socket = require("socket.io")
-const chatSocket = require("./src/utils/socket")
-const io = socket(httpServer)
-chatSocket(io)
-
+const sio = require("./src/utils/socket")
+sio.init(httpServer)
 
 
 const mwLogger = require('./src/utils/middlewares/logger')
