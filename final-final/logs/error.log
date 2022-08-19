@@ -18,3 +18,4 @@
 [2022-08-10T15:39:28.166] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "infadfjdf" (type string) at path "_id" for model "Product"
 [2022-08-10T16:01:12.290] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "fhfdhg" (type string) at path "_id" for model "Product"
 [2022-08-10T17:11:00.234] [ERROR] errors - ERROR: CastError: Cast to ObjectId failed for value "fwgrgee" (type string) at path "_id" for model "Product"
+[2022-08-18T16:05:13.104] [ERROR] errors - ERROR: TypeError: Cannot read properties of undefined (reading 'filename')
