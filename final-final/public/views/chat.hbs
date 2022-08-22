@@ -1,16 +1,33 @@
 {{> navbar}}
 
+<form id="verRtas" action="/chat/email" method="GET">
+    <button type="submit" class="m-3 btn btn-primary">Ir a chat privado</button>
+</form>
+
+
 <div class="container m-3">
     <div class="bg-light rounded">
-
-        <h4>Mensajes:</h4>
+        <h4>Mensajes generales:</h4>
         <ul id="listado-msjs">
-            
         </ul>
         <div id="env-msjs">
-            <input id="nuevo-msj" placeholder="Nuevo mensaje">
-            <button id="btn-msj" onclick="enviarMensaje()">Enviar</button>
+            <input class='form-control mt-3' id="nuevo-msj" placeholder="Nuevo mensaje">
+            <button class='btn btn-primary mt-3' id="btn-msj" onclick="enviarMensaje()">Enviar</button>
         </div>
-
     </div>
 </div>
+
+<hr>
+
+{{#if isAdmin}}
+<div class="container m-3">
+    <div class="bg-light rounded">
+        <h4>Responder pregunta:</h4>
+        <div id="env-msjs">
+            <input class='form-control mt-3' id="mail-rta" placeholder="MAIL al que se responde">
+            <input class='form-control mt-3' id="nueva-rta" placeholder="Ingresar respuesta...">
+            <button class='btn btn-primary mt-3' id="btn-rta" onclick="enviarRespuesta()">Responder</button>
+        </div>
+    </div>
+</div>
+{{/if}}

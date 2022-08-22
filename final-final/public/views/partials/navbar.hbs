@@ -1,4 +1,5 @@
 <div class="container-fluid px-0">
+    <p id="mailPChatSocket" style="display:none">{{email}}</p>
     <nav class="navbar navbar-expand-md navbar-dark bg-black px-0">
         <a class="navbar-brand mr-5" href="#" id="navbarDropdown"><img id="logo" src="{{avatar}}">
             &nbsp;&nbsp;&nbsp;{{username}} ({{email}}) </a>
@@ -19,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/carrito/{{cartId}}/productos">Carrito</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat">Chat</a>
+                </li>
                 {{#if isAdmin}}
                 <li class="nav-item">
                     <a class="nav-link" href="/productos/addProd">Agregar Prod</a>
@@ -34,4 +38,3 @@
         </div>
     </nav>
 </div>
-<p id="mailPChatSocket" style="display:none">{{email}}</p>

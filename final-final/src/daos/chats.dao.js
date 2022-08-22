@@ -17,4 +17,12 @@ async function getAll() {
     }
 }
 
-module.exports = { addOne, getAll }
+async function getAllByMail(email) {
+    try {
+        return await Messages.find({ email: email }).lean().exec()
+    } catch (error) {
+        logget.loggerError.error(`ERROR: ${error}`)
+    }
+}
+
+module.exports = { addOne, getAll, getAllByMail }

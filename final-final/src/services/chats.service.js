@@ -1,4 +1,4 @@
-const { addOne, getAll } = require('../daos/chats.dao.js')
+const { addOne, getAll, getAllByMail } = require('../daos/chats.dao.js')
 
 async function addMsg(msg, email, type) {
     const data = {
@@ -14,5 +14,8 @@ async function getMsgs() {
     return await getAll()
 }
 
+async function getMsgsByEmail(email) {
+    return await getAllByMail(email)
+}
 
-module.exports = { addMsg, getMsgs }
+module.exports = { addMsg, getMsgs, getMsgsByEmail }

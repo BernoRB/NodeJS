@@ -5,14 +5,18 @@ function toggleform() {
 
 const socket = io()
 
-socket.once('listar mensajes', (msjs) => {
-    const html = generateHtml(msjs)
-    document.getElementById('listado-msjs').innerHTML = html
+socket.on('listar mensajes', (msjs) => {
+    const divHtml = document.getElementById('listado-msjs')
+    if (divHtml) {
+        const html = generateHtmlRtas(msjs)
+        divHtml.innerHTML = html
+    }
+
 })
 
-socket.on('nuevo mensaje', (msjs) => {
-    const html = generateHtml(msjs)
-    document.getElementById('listado-msjs').innerHTML = html
+socket.on('ver respuestas', (msjs) => {
+    const html = generateHtmlRtas(msjs)
+    document.getElementById('listado-msjs-y-rtas').innerHTML = html
 })
 
 function enviarMensaje() {
@@ -22,16 +26,36 @@ function enviarMensaje() {
     socket.emit('nuevo mensaje', { msg: nuevoMsj, mail: mail })
 }
 
-function generateHtml(msjs) {
+function enviarRespuesta() {
+    const nuevoMsj = document.getElementById('nueva-rta').value
+    const mail = document.getElementById('mail-rta').value
+    document.getElementById('nueva-rta').value = ''
+    socket.emit('nueva respuesta', { msg: nuevoMsj, mail: mail })
+}
+
+function verRespuestas() {
+    const mail = document.getElementById('mailPChatSocket').innerHTML
+    socket.emit('ver respuestas', mail)
+}
+
+
+function generateHtmlRtas(msjs) {
     let html = ''
     msjs.forEach(element => {
-        html += `
-        <div>
-            <span class="fw-bold text-primary">${element.email}</span>
-            [<span class="text-muted">${element.date}</span>]:
-            <span class="fst-italic">${element.body}</span>
-        </div>
-        `
+        html += element.type == 'usuario' ? `
+            <div>
+                <span class="fw-bold text-primary">${element.email}</span>
+                [<span class="text-muted">${element.date}</span>]:
+                <span class="fst-italic">${element.body}</span>
+            </div>
+            ` : `
+            <div>
+                <span class="fw-bold" style='color: red;'>RESPUESTA ADMIN:</span>
+                [<span class="text-muted">${element.date}</span>]:
+                <span class="fst-italic">${element.body}</span>
+            </div>
+            `;
+
     })
     return html
 }
