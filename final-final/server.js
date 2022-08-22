@@ -5,17 +5,16 @@ const { initializePassport } = require('./src/utils/passport.config.js')
 const passport = require('passport')
 const baseSession = require('./src/utils/session')
 const logger = require('./src/utils/logger')
-//const cluster = require('cluster');
-//const { Server: IOServer } = require("socket.io")
+const cluster = require('cluster');
 const { Server: HttpServer } = require("http")
 const { engine } = require("express-handlebars")
 const methodOverride = require('method-override')
+const sio = require("./src/utils/socket")
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'));
 const httpServer = new HttpServer(app)
-//const io = new IOServer(httpServer)
 app.use(methodOverride('_method'))
 app.use(express.json())
 app.use(baseSession)
@@ -42,24 +41,6 @@ mongoose.connect(process.env.MONGOURL, {
 })
 
 
-/*
-// Socket
-io.on("connection", async (socket) => {
-    socket.emit("products", await products.getAllProducts())
-    socket.on("new-product", async (newProduct) => {
-        await products.addProduct(newProduct)
-        const prods = await products.getAllProducts()
-        io.sockets.emit("products", prods)
-    })
-})
-*/
-
-
-
-
-
-
-
 // Posibilidad de iniciar en modo cluster
 const PORT = process.env.PORT || 5000
 if (process.env.MODE != 'fork') {
@@ -76,7 +57,6 @@ if (process.env.MODE != 'fork') {
     httpServer.listen(PORT, () => { logger.loggerConsole.info(`Escuchando en el puerto ${httpServer.address().port} proceso ID ${process.pid}`) })
 
 
-const sio = require("./src/utils/socket")
 sio.init(httpServer)
 
 
