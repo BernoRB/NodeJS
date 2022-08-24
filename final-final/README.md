@@ -36,6 +36,9 @@ Los productos pueden filtrarse por categoria haciendo click en los botones
 
 ![img](https://imgur.com/sLCjf6N.jpg)
 
+Traemos un producto por ID
+
+![img](https://imgur.com/wtl5ZIM.jpg)
 
 Si vamos a "Mi cuenta" nos encontramos con la información que el usuario ingresó a la hora de registrarse:
 

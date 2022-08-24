@@ -48,7 +48,7 @@ const getProducts = async (req, res) => {
         res.render("dash", {
             username: req.user.username,
             email: req.user.email,
-            avatar: `images/${req.user.avatar}`,
+            avatar: `../../images/${req.user.avatar}`,
             loggedIn: true,
             products,
             cartId: cartId._id,
